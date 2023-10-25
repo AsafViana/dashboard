@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const teste = () => {
 	axios
-		.get('/api/dados-do-banco')
+		.get('http://127.0.0.1:5000')
 		.then((response) => {
 			// Use os dados do PostgreSQL aqui
 			console.log(response.data)
@@ -11,3 +11,6 @@ const teste = () => {
 			console.error('Erro na chamada de API:', error)
 		})
 }
+
+
+export {teste}

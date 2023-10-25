@@ -14,7 +14,7 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["react", "react-native"],
+	"plugins": ["react"],
 	"rules": {
 		// perjsx-fiemite escrever jsx em js
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx", ".ts"] }],
