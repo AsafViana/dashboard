@@ -28,6 +28,7 @@ import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
+import {teste} from '../../service/postgres.ts'
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import { campanhaFranquias } from "../../service/database";
@@ -38,7 +39,11 @@ import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
+<<<<<<< HEAD
   const campanha_franquias = campanhaFranquias();
+=======
+  teste()
+>>>>>>> 55dae8d0a0acd3f488764682c6f5ffe0ad0db461
 
   return (
     <DashboardLayout>
