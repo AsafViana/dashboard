@@ -30,6 +30,7 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import { campanhaFranquias } from "../../service/database";
 
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
@@ -37,6 +38,7 @@ import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
+  const campanha_franquias = campanhaFranquias();
 
   return (
     <DashboardLayout>
