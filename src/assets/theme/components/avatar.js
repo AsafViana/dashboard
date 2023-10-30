@@ -14,24 +14,24 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React base styles
-import borders from "assets/theme/base/borders";
+import borders from 'assets/theme/base/borders'
 
-const { borderRadius } = borders;
+const { borderRadius } = borders
 
 const avatar = {
-  styleOverrides: {
-    root: {
-      transition: "all 200ms ease-in-out",
-    },
+	styleOverrides: {
+		root: {
+			transition: 'all 200ms ease-in-out',
+		},
 
-    rounded: {
-      borderRadius: borderRadius.lg,
-    },
+		rounded: {
+			borderRadius: borderRadius.lg,
+		},
 
-    img: {
-      height: "auto",
-    },
-  },
-};
+		img: {
+			height: 'auto',
+		},
+	},
+}
 
-export default avatar;
+export default avatar

@@ -12,5 +12,4 @@ const teste = () => {
 		})
 }
 
-
-export {teste}
+export { teste }

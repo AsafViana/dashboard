@@ -1,75 +1,41 @@
 {
-<<<<<<< HEAD
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": ["plugin:react/recommended"],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": ["react", "prettier"],
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
-    "react/display-name": "off",
-    "default-param-last": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/jsx-props-no-spreading": [
-      1,
-      {
-        "custom": "ignore"
-      }
-    ],
-    "react/jsx-curly-spacing": [2, "never"]
-  },
-  "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
-=======
 	"env": {
-		"es2021": true,
-		"node": true
+		"browser": true,
+		"es2021": true
 	},
-	"extends": ["plugin:react/recommended", "xo", "xo-typescript"],
-	"overrides": [
-		{
-			"extends": ["xo-typescript"],
-			"files": ["*.ts", "*.tsx"]
-		}
-	],
+	"extends": ["plugin:react/recommended"],
 	"parserOptions": {
-		"ecmaVersion": "latest",
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": ["react"],
+	"plugins": ["react", "prettier"],
 	"rules": {
-		// perjsx-fiemite escrever jsx em js
-		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx", ".ts"] }],
-
-		"no-use-before-define": ["error", { "variables": false }],
-
-		// ajustar para não passar erros com navigation
-		"react/prop-types": ["error", { "ignore": ["navigation", "navigation.navigate"] }],
-
-		"object-curly-spacing": "off",
-		"@typescript-eslint/object-curly-spacing": "off",
 		"prettier/prettier": [
 			"error",
 			{
-				"endOfLine": "auto"
+				"arrowParens": "always",
+				"bracketSpacing": true,
+				"jsxBracketSameLine": true,
+				"jsxSingleQuote": true,
+				"singleQuote": true,
+				"semi": false,
+				"printWidth": 300,
+				"useTabs": true,
+				"tabWidth": 3,
+				"trailingComma": "es5",
+				"requirePragma": false,
+				"quoteProps": "consistent",
+				"bracketSameLine": false,
+				"proseWrap": "never"
 			}
 		],
 		"react/display-name": "off",
 		"default-param-last": "off",
 		"react/react-in-jsx-scope": "off",
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
 		"react/jsx-props-no-spreading": [
 			1,
 			{
@@ -79,5 +45,4 @@
 		"react/jsx-curly-spacing": [2, "never"]
 	},
 	"settings": { "import/resolver": { "node": { "paths": ["src"] } } }
->>>>>>> 55dae8d0a0acd3f488764682c6f5ffe0ad0db461
 }

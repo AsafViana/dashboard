@@ -1,14 +1,24 @@
 const campanhaFranquias = () => {
-  let request = new XMLHttpRequest();
-  request.open("GET", "http://127.0.0.1:5000/franquias");
-  request.send();
-  request.onload = function () {
-    if (request.status === 200) {
-      return request.responseText;
-    } else {
-      console.log("error");
-    }
-  };
-};
+	return new Promise((resolve, reject) => {
+		const data = JSON.stringify({
+			acao: 'limpar',
+		})
+		const request = new XMLHttpRequest()
+		request.open('POST', 'http://127.0.0.1:5000/campanhas-franquias', true)
 
-export { campanhaFranquias };
+		request.setRequestHeader('Content-Type', 'application/json')
+		request.onload = function () {
+			if (request.status === 200) {
+				// Requisição bem-sucedida
+				const resposta = JSON.parse(request.responseText)
+				console.log(resposta)
+			} else {
+				// Tratar erros aqui
+				console.error('Erro na requisição:', request.status, request.statusText)
+			}
+		}
+		request.send(data)
+	})
+}
+
+export { campanhaFranquias }
