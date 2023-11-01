@@ -19,7 +19,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import Grid from '@mui/material/Grid'
 import CircularProgress from '@mui/material/CircularProgress'
 import ServicosToggle from '../../components/ServicosToggle'
-import Meta from './screens/Meta'
+import Meta from '../MetaFranquias/MetaFranquias'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
 import { campanhaFranquias } from '../../service/database'
 

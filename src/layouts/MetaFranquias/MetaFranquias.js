@@ -33,13 +33,13 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
-import { campanhaFranquias } from '../../../service/database'
+import { campanhaFranquias } from '../../service/database'
 
 // Dashboard components
 import Projects from 'layouts/dashboard/components/Projects'
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
-export default function Meta() {
+export default function MetaFranquias() {
 	const [CampanhasFranquias, setCampanhasFranquias] = useState([])
 	const [Loaded, setLoaded] = useState(false)
 	const { sales, tasks } = reportsLineChartData

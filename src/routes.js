@@ -36,15 +36,8 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import Dashboard from 'layouts/dashboard'
-import Tables from 'layouts/tables'
-import Billing from 'layouts/billing'
-import RTL from 'layouts/rtl'
-import Notifications from 'layouts/notifications'
-import Profile from 'layouts/profile'
-import SignIn from 'layouts/authentication/sign-in'
-import SignUp from 'layouts/authentication/sign-up'
-import Meta from 'layouts/dashboard/screens/Meta'
+import MetaFranqueadora from 'layouts/MetaFranquadora/MetaFranqueadora'
+import MetaFranquia from 'layouts/MetaFranquias/MetaFranquias'
 import Google from 'layouts/dashboard/screens/Google'
 import Linx from 'layouts/dashboard/screens/Linx'
 
@@ -66,15 +59,30 @@ const routes = [
 	}, */
 	{
 		type: 'collapse',
-		name: 'Meta',
-		key: 'meta',
+		name: 'Meta Franqueadora',
+		key: 'metaFranqueadora',
 		icon: (
 			<SvgIcon fontSize='medium'>
 				<MetaIcon />
 			</SvgIcon>
 		),
-		route: '/meta',
-		component: <Meta />,
+		route: '/meta-franqueadora',
+		component: <MetaFranqueadora />,
+	},
+	{
+		type: 'collapse',
+		name: 'Meta Franquias',
+		key: 'metaFranquias',
+		icon: (
+			<SvgIcon fontSize='medium'>
+				<MetaIcon />
+			</SvgIcon>
+		),
+		route: '/meta-franquias',
+		component: <MetaFranquia />,
+	},
+	{
+		type: 'divider',
 	},
 	{
 		type: 'collapse',

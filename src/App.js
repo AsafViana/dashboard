@@ -125,7 +125,7 @@ export default function App() {
 		<CacheProvider value={rtlCache}>
 			<ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
 				<CssBaseline />
-				{layout === 'meta' && (
+				{layout === 'metaFanqueadora' && (
 					<>
 						<Sidenav color={sidenavColor} brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite} brandName='Compania Dashboard' routes={routes} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave} />
 						<Configurator />
@@ -152,7 +152,7 @@ export default function App() {
 			{layout === 'vr' && <Configurator />}
 			<Routes>
 				{getRoutes(routes)}
-				<Route path='*' element={<Navigate to='/dashboard' />} />
+				<Route path='*' element={<Navigate to='/meta-franqueadora' />} />
 			</Routes>
 		</ThemeProvider>
 	)

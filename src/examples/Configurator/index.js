@@ -52,6 +52,7 @@ function Configurator() {
 		function handleDisabled() {
 			return window.innerWidth > 1200 ? setDisabled(false) : setDisabled(true)
 		}
+		setDarkMode(dispatch, true)
 
 		// The event listener that's calling the handleDisabled function when resizing the window.
 		window.addEventListener('resize', handleDisabled)
