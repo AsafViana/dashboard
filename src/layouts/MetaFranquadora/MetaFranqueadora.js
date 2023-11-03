@@ -54,7 +54,7 @@ export default function Dashboard() {
 		}
 
 		clicksPorMes()
-	}, [CampanhasFranquias])
+	}, [])
 
 	if (Loaded) {
 		return (

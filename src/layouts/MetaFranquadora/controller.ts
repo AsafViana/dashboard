@@ -1,3 +1,20 @@
+import { mesNumeroParaCursivo, arredondarNumero } from '../../tools/date.ts'
+
+const meses = {
+	janeiro: 1,
+	fevereiro: 2,
+	marco: 3,
+	abril: 4,
+	maio: 5,
+	junho: 6,
+	julho: 7,
+	agosto: 8,
+	setembro: 9,
+	outubro: 10,
+	novembro: 11,
+	dezembro: 12,
+}
+
 const campanhaFranquias = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
@@ -59,16 +76,63 @@ const clicksPorMes = () => {
 				label: [],
 				datasets: [],
 			}
-			const mes = []
+			const datasSemFormatacao = []
+			let mes = []
 
 			array.map((obj) => {
-				mes.push(obj.date_start)
+				datasSemFormatacao.push(obj.date_start)
 			})
-			console.log(mes)
+			const datas = datasSemFormatacao.filter((value, index, self) => {
+				return self.indexOf(value) === index
+			})
+
+			datas.map((data) => mes.push(mesNumeroParaCursivo(data)))
+			mes = mes.filter((value, index, self) => {
+				return self.indexOf(value) === index
+			})
+			resultado.label = mes
+			console.log(somatorioCliquesPorMes(array))
 		})
 		.catch(() => {
 			console.error('Ocorreu um erro')
 		})
+}
+
+function somatorioCliquesPorMes(dados) {
+	let somatorio = {}
+
+	dados.map((item) => {
+		const data = new Date(item.date_start)
+		const mes = data.getMonth()
+		const mesCursivo = Object.keys(meses).find((chave) => meses[chave] === mes)
+
+		if (!isNaN(parseInt(item.clicks))) {
+			if (somatorio[mesCursivo]) {
+				somatorio[mesCursivo] += parseInt(item.clicks)
+			} else {
+				somatorio[mesCursivo] = parseInt(item.clicks)
+			}
+		} else {
+			if (somatorio[mesCursivo]) {
+				somatorio[mesCursivo] += 0
+			} else {
+				somatorio[mesCursivo] = 0
+			}
+		}
+	})
+
+	// Converta o objeto em uma matriz de pares chave-valor e ordene com base nos valores.
+	const mesesOrdenados = {}
+
+	// Ordene as chaves (meses) em ordem alfabética
+	const mesesOrdenadosAlfabeticamente = Object.keys(mesesOrdenados).sort()
+
+	// Preencha o objeto mesesOrdenados com os meses ordenados alfabeticamente
+	for (const mes of mesesOrdenadosAlfabeticamente) {
+		mesesOrdenados[mes] = mesesOrdenados[mes]
+	}
+
+	return somatorio
 }
 
 export { campanhaFranquias, adsetsFranquias, clicksPorMes }
