@@ -33,7 +33,6 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
-import { campanhaFranquias } from '../../../service/database'
 
 // Dashboard components
 import Projects from 'layouts/dashboard/components/Projects'
@@ -44,15 +43,7 @@ export default function Dashboard() {
 	const [Loaded, setLoaded] = useState(false)
 	const { sales, tasks } = reportsLineChartData
 
-	useEffect(() => {
-		campanhaFranquias().then((obj) => {
-			setCampanhasFranquias(obj)
-		})
-
-		if (CampanhasFranquias) {
-			setLoaded(true)
-		}
-	}, [CampanhasFranquias])
+	useEffect(() => {}, [CampanhasFranquias])
 
 	if (Loaded) {
 		return (

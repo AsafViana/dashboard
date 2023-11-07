@@ -1,5 +1,3 @@
-import { mesNumeroParaCursivo, arredondarNumero } from '../../tools/date.ts'
-
 const meses = {
 	janeiro: 1,
 	fevereiro: 2,
@@ -15,7 +13,7 @@ const meses = {
 	dezembro: 12,
 }
 
-const campanhaFranquias = () => {
+const campanha = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
 			acao: 'receber',
@@ -43,7 +41,35 @@ const campanhaFranquias = () => {
 	})
 }
 
-const adsetsFranquias = () => {
+const campanhaQuantidade = () => {
+	return new Promise((resolve, reject) => {
+		const data = JSON.stringify({
+			acao: 'quantidade_campanha',
+			dados: 'campanhas',
+			perfil: 'franqueadora',
+			filtro: '',
+			range: 0,
+		})
+		const request = new XMLHttpRequest()
+		request.open('POST', 'http://127.0.0.1:5000/meta', true)
+
+		request.setRequestHeader('Content-Type', 'application/json')
+		request.onload = function () {
+			if (request.status === 200) {
+				// Requisição bem-sucedida
+				const resposta = JSON.parse(request.responseText)
+				resolve(resposta)
+			} else {
+				// Tratar erros aqui
+				reject(new Error(`Erro ${request.status}: ${request.statusText}`))
+				console.error('Erro na requisição:', request.status, request.statusText)
+			}
+		}
+		request.send(data)
+	})
+}
+
+const adsets = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
 			acao: 'receber',
@@ -70,69 +96,59 @@ const adsetsFranquias = () => {
 }
 
 const clicksPorMes = () => {
-	campanhaFranquias()
-		.then((array: Array<any>) => {
-			const resultado = {
-				label: [],
-				datasets: [],
-			}
-			const datasSemFormatacao = []
-			let mes = []
-
-			array.map((obj) => {
-				datasSemFormatacao.push(obj.date_start)
-			})
-			const datas = datasSemFormatacao.filter((value, index, self) => {
-				return self.indexOf(value) === index
-			})
-
-			datas.map((data) => mes.push(mesNumeroParaCursivo(data)))
-			mes = mes.filter((value, index, self) => {
-				return self.indexOf(value) === index
-			})
-			resultado.label = mes
-			console.log(somatorioCliquesPorMes(array))
+	return new Promise((resolve, reject) => {
+		const data = JSON.stringify({
+			acao: 'clicks_por_mes True',
+			dados: 'campanhas',
+			perfil: 'franqueadora',
+			filtro: '',
+			range: 0,
 		})
-		.catch(() => {
-			console.error('Ocorreu um erro')
-		})
-}
+		const request = new XMLHttpRequest()
+		request.open('POST', 'http://127.0.0.1:5000/meta', true)
 
-function somatorioCliquesPorMes(dados) {
-	let somatorio = {}
-
-	dados.map((item) => {
-		const data = new Date(item.date_start)
-		const mes = data.getMonth()
-		const mesCursivo = Object.keys(meses).find((chave) => meses[chave] === mes)
-
-		if (!isNaN(parseInt(item.clicks))) {
-			if (somatorio[mesCursivo]) {
-				somatorio[mesCursivo] += parseInt(item.clicks)
+		request.setRequestHeader('Content-Type', 'application/json')
+		request.onload = function () {
+			if (request.status === 200) {
+				// Requisição bem-sucedida
+				const resposta = JSON.parse(request.responseText)
+				resolve(resposta)
 			} else {
-				somatorio[mesCursivo] = parseInt(item.clicks)
-			}
-		} else {
-			if (somatorio[mesCursivo]) {
-				somatorio[mesCursivo] += 0
-			} else {
-				somatorio[mesCursivo] = 0
+				// Tratar erros aqui
+				reject(new Error(`Erro ${request.status}: ${request.statusText}`))
+				console.error('Erro na requisição:', request.status, request.statusText)
 			}
 		}
+		request.send(data)
 	})
-
-	// Converta o objeto em uma matriz de pares chave-valor e ordene com base nos valores.
-	const mesesOrdenados = {}
-
-	// Ordene as chaves (meses) em ordem alfabética
-	const mesesOrdenadosAlfabeticamente = Object.keys(mesesOrdenados).sort()
-
-	// Preencha o objeto mesesOrdenados com os meses ordenados alfabeticamente
-	for (const mes of mesesOrdenadosAlfabeticamente) {
-		mesesOrdenados[mes] = mesesOrdenados[mes]
-	}
-
-	return somatorio
 }
 
-export { campanhaFranquias, adsetsFranquias, clicksPorMes }
+const gastosPorMes = () => {
+	return new Promise((resolve, reject) => {
+		const data = JSON.stringify({
+			acao: 'gastos_por_mes',
+			dados: 'campanhas',
+			perfil: 'franqueadora',
+			filtro: '',
+			range: 0,
+		})
+		const request = new XMLHttpRequest()
+		request.open('POST', 'http://127.0.0.1:5000/meta', true)
+
+		request.setRequestHeader('Content-Type', 'application/json')
+		request.onload = function () {
+			if (request.status === 200) {
+				// Requisição bem-sucedida
+				const resposta = JSON.parse(request.responseText)
+				resolve(resposta)
+			} else {
+				// Tratar erros aqui
+				reject(new Error(`Erro ${request.status}: ${request.statusText}`))
+				console.error('Erro na requisição:', request.status, request.statusText)
+			}
+		}
+		request.send(data)
+	})
+}
+
+export { campanha, adsets, clicksPorMes, campanhaQuantidade }
