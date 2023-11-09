@@ -38,7 +38,7 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React layouts
 import MetaFranqueadora from 'layouts/MetaFranquadora/MetaFranqueadora'
 import MetaFranquia from 'layouts/MetaFranquias/MetaFranquias'
-import Google from 'layouts/dashboard/screens/Google'
+import Google from 'layouts/Google/Google'
 import Linx from 'layouts/dashboard/screens/Linx'
 
 // @mui icons

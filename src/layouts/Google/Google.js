@@ -17,6 +17,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 
 // @mui material components
 import Grid from '@mui/material/Grid'
+import CircularProgress from '@mui/material/CircularProgress'
 
 // Material Dashboard 2 React components
 import MDBox from 'components/MDBox'
@@ -32,32 +33,15 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
-import { campanha, clicksPorMes, campanhaQuantidade } from './controller.ts'
 
 // Dashboard components
 import Projects from 'layouts/dashboard/components/Projects'
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
-export default function Dashboard() {
-	const [Campanhas, setCampanhas] = useState([])
-	const [CampanhaQuantidade, setCampanhaQuantidade] = useState(0)
-	const [ClicksPorMes, setClicksPorMes] = useState({})
+export default function Google() {
 	const { sales, tasks } = reportsLineChartData
 
-	useEffect(() => {
-		campanha().then((obj) => {
-			setCampanhas(obj)
-		})
-		console.log(tasks)
-
-		campanhaQuantidade().then((val) => {
-			setCampanhaQuantidade(val)
-		})
-
-		clicksPorMes().then((value) => {
-			setClicksPorMes(value)
-		})
-	}, [CampanhaQuantidade])
+	useEffect(() => {}, [])
 
 	return (
 		<DashboardLayout>
@@ -70,7 +54,7 @@ export default function Dashboard() {
 								color='dark'
 								icon='weekend'
 								title='Numero de campanhas'
-								count={CampanhaQuantidade}
+								count={100}
 								percentage={{
 									color: 'success',
 									amount: '+55%',
@@ -128,17 +112,27 @@ export default function Dashboard() {
 					<Grid container spacing={3}>
 						<Grid item xs={12} md={6} lg={4}>
 							<MDBox mb={3}>
-								<ReportsBarChart color='info' title='Gastos' description='Gastos das campanhas do ultimos meses' date='campaign sent 2 days ago' chart={reportsBarChartData} />
+								<ReportsBarChart color='info' title='website views' description='Last Campaign Performance' date='campaign sent 2 days ago' chart={reportsBarChartData} />
 							</MDBox>
 						</Grid>
 						<Grid item xs={12} md={6} lg={4}>
 							<MDBox mb={3}>
-								<ReportsLineChart color='success' title='gastos' description='Gastos dos campanhas do ultimos meses' date='atualizado agora' chart={sales} />
+								<ReportsLineChart
+									color='success'
+									title='daily sales'
+									description={
+										<>
+											(<strong>+15%</strong>) increase in today sales.
+										</>
+									}
+									date='updated 4 min ago'
+									chart={sales}
+								/>
 							</MDBox>
 						</Grid>
 						<Grid item xs={12} md={6} lg={4}>
 							<MDBox mb={3}>
-								<ReportsLineChart color='dark' title='clicks por mês' description='Somatório da quantidade de clicks de cada mês' date='atualizado agora' chart={ClicksPorMes} />
+								<ReportsLineChart color='dark' title='completed tasks' description='Last Campaign Performance' date='just updated' chart={tasks} />
 							</MDBox>
 						</Grid>
 					</Grid>

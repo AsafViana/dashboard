@@ -18,7 +18,7 @@ const campanha = () => {
 		const data = JSON.stringify({
 			acao: 'receber',
 			dados: 'campanhas',
-			perfil: 'franqueadora',
+			perfil: 'franquias',
 			filtro: '',
 			range: 0,
 		})
@@ -46,7 +46,7 @@ const campanhaQuantidade = () => {
 		const data = JSON.stringify({
 			acao: 'quantidade_campanha',
 			dados: 'campanhas',
-			perfil: 'franqueadora',
+			perfil: 'franquias',
 			filtro: '',
 			range: 0,
 		})
@@ -74,7 +74,7 @@ const adsets = () => {
 		const data = JSON.stringify({
 			acao: 'receber',
 			dados: 'campanhas',
-			perfil: 'franqueadora',
+			perfil: 'franquias',
 			filtro: '',
 		})
 		const request = new XMLHttpRequest()
@@ -102,7 +102,7 @@ const clicksPorMes = () => {
 		const data = JSON.stringify({
 			acao: 'clicks_por_mes True',
 			dados: 'campanhas',
-			perfil: 'franqueadora',
+			perfil: 'franquias',
 			filtro: '',
 			range: 0,
 		})
@@ -130,7 +130,7 @@ const gastosPorMes = () => {
 		const data = JSON.stringify({
 			acao: 'gastos_por_mes',
 			dados: 'campanhas',
-			perfil: 'franqueadora',
+			perfil: 'franquias',
 			filtro: '',
 			range: 0,
 		})
