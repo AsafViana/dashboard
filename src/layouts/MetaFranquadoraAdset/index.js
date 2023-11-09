@@ -32,24 +32,18 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
-import { campanha, clicksPorMes, campanhaQuantidade } from './controller.js'
+import { campanha, clicksPorMes, campanhaQuantidade } from './controller.ts'
 
 // Dashboard components
 import Projects from 'layouts/dashboard/components/Projects'
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
-export default function Dashboard() {
-	const [Campanhas, setCampanhas] = useState([])
+export default function index() {
 	const [CampanhaQuantidade, setCampanhaQuantidade] = useState(0)
 	const [ClicksPorMes, setClicksPorMes] = useState({})
 	const { sales, tasks } = reportsLineChartData
 
 	useEffect(() => {
-		campanha().then((obj) => {
-			setCampanhas(obj)
-		})
-		console.log(tasks)
-
 		campanhaQuantidade().then((val) => {
 			setCampanhaQuantidade(val)
 		})

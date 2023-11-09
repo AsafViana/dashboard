@@ -36,12 +36,12 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import MetaFranqueadoraCampanha from 'layouts/MetaFranqueadoraCampanha/'
-import MetaFranquiaCampanha from 'layouts/MetaFranquiasCampanha/MetaFranquias'
-import MetaFranqueadoraAdset from 'layouts/MetaFranqueadoraAdset/MetaFranqueadora'
-import MetaFranquiaAdset from 'layouts/MetaFranquiasAdset/MetaFranquias'
+import MetaFranqueadoraCampanha from 'layouts/MetaFranqueadoraCampanha'
+import MetaFranquiaCampanha from 'layouts/MetaFranquiasCampanha'
+import MetaFranqueadoraAdset from 'layouts/MetaFranqueadoraAdset.js'
+import MetaFranquiaAdset from 'layouts/MetaFranquiasAdset'
 import Google from 'layouts/Google/Google'
-import Linx from 'layouts/dashboard/screens/Linx'
+/* import Linx from 'layouts/dashboard/screens/Linx' */
 
 // @mui icons
 import Icon from '@mui/material/Icon'
@@ -124,7 +124,7 @@ const routes = [
 		route: '/google',
 		component: <Google />,
 	},
-	{
+	/* {
 		type: 'collapse',
 		name: 'Linx',
 		key: 'linx',
@@ -135,8 +135,8 @@ const routes = [
 		),
 		route: '/linx',
 		component: <Linx />,
-	} /* ,
-	{
+	}, */
+	/*{
 		type: 'collapse',
 		name: 'Notifications',
 		key: 'notifications',
@@ -167,7 +167,8 @@ const routes = [
 		icon: <Icon fontSize='small'>assignment</Icon>,
 		route: '/authentication/sign-up',
 		component: <SignUp />,
-	}, */,
+	}, */
+	,
 ]
 
 export default routes

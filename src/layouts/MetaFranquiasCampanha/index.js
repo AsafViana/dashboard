@@ -38,12 +38,18 @@ import { campanha, clicksPorMes, campanhaQuantidade } from './controller.js'
 import Projects from 'layouts/dashboard/components/Projects'
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
-export default function Dashboard() {
+export default function index() {
+	const [Campanhas, setCampanhas] = useState([])
 	const [CampanhaQuantidade, setCampanhaQuantidade] = useState(0)
 	const [ClicksPorMes, setClicksPorMes] = useState({})
 	const { sales, tasks } = reportsLineChartData
 
 	useEffect(() => {
+		campanha().then((obj) => {
+			setCampanhas(obj)
+		})
+		console.log(tasks)
+
 		campanhaQuantidade().then((val) => {
 			setCampanhaQuantidade(val)
 		})
