@@ -36,8 +36,10 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import MetaFranqueadora from 'layouts/MetaFranquadora/MetaFranqueadora'
-import MetaFranquia from 'layouts/MetaFranquias/MetaFranquias'
+import MetaFranqueadoraCampanha from 'layouts/MetaFranqueadoraCampanha/'
+import MetaFranquiaCampanha from 'layouts/MetaFranquiasCampanha/MetaFranquias'
+import MetaFranqueadoraAdset from 'layouts/MetaFranqueadoraAdset/MetaFranqueadora'
+import MetaFranquiaAdset from 'layouts/MetaFranquiasAdset/MetaFranquias'
 import Google from 'layouts/Google/Google'
 import Linx from 'layouts/dashboard/screens/Linx'
 
@@ -57,29 +59,55 @@ const routes = [
 		route: '/dashboard',
 		component: <Dashboard />,
 	}, */
+	{ type: 'title', title: 'Adsets' },
 	{
 		type: 'collapse',
 		name: 'Meta Franqueadora',
-		key: 'metaFranqueadora',
+		key: 'metaFranqueadoraAdset',
 		icon: (
 			<SvgIcon fontSize='medium'>
 				<MetaIcon />
 			</SvgIcon>
 		),
-		route: '/meta-franqueadora',
-		component: <MetaFranqueadora />,
+		route: '/meta-franqueadora-adset',
+		component: <MetaFranqueadoraAdset />,
 	},
 	{
 		type: 'collapse',
 		name: 'Meta Franquias',
-		key: 'metaFranquias',
+		key: 'metaFranquiasAdset',
 		icon: (
 			<SvgIcon fontSize='medium'>
 				<MetaIcon />
 			</SvgIcon>
 		),
-		route: '/meta-franquias',
-		component: <MetaFranquia />,
+		route: '/meta-franquias-adset',
+		component: <MetaFranquiaAdset />,
+	},
+	{ type: 'title', title: 'Campanhas' },
+	{
+		type: 'collapse',
+		name: 'Meta Franqueadora',
+		key: 'metaFranqueadoraCampanha',
+		icon: (
+			<SvgIcon fontSize='medium'>
+				<MetaIcon />
+			</SvgIcon>
+		),
+		route: '/meta-franqueadora-campanha',
+		component: <MetaFranqueadoraCampanha />,
+	},
+	{
+		type: 'collapse',
+		name: 'Meta Franquias',
+		key: 'metaFranquiasCampanha',
+		icon: (
+			<SvgIcon fontSize='medium'>
+				<MetaIcon />
+			</SvgIcon>
+		),
+		route: '/meta-franquias-campanha',
+		component: <MetaFranquiaCampanha />,
 	},
 	{
 		type: 'divider',

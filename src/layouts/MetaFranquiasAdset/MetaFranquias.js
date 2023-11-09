@@ -32,7 +32,7 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
-import { campanha, clicksPorMes, campanhaQuantidade } from './controller.ts'
+import { campanha, clicksPorMes, campanhaQuantidade } from './controller.js'
 
 // Dashboard components
 import Projects from 'layouts/dashboard/components/Projects'
