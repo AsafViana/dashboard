@@ -44,7 +44,7 @@ const campanha = () => {
 const campanhaQuantidade = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
-			acao: 'quantidade_campanha',
+			acao: 'quantidade_campanha True',
 			dados: 'campanhas',
 			perfil: 'franquias',
 			filtro: '',
@@ -128,7 +128,7 @@ const clicksPorMes = () => {
 const gastosPorMes = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
-			acao: 'gastos_por_mes',
+			acao: 'gastos_por_mes True',
 			dados: 'campanhas',
 			perfil: 'franquias',
 			filtro: '',
@@ -153,4 +153,4 @@ const gastosPorMes = () => {
 	})
 }
 
-export { campanha, adsets, clicksPorMes, campanhaQuantidade }
+export { campanha, adsets, clicksPorMes, campanhaQuantidade, gastosPorMes }

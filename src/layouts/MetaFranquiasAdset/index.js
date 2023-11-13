@@ -32,32 +32,29 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
-import { campanha, clicksPorMes, campanhaQuantidade } from './controller.js'
+import { clicksPorMes, adsetQuantidade, gastosPorMes } from './controller.js'
 
 // Dashboard components
 import Projects from 'layouts/dashboard/components/Projects'
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
 export default function index() {
-	const [Campanhas, setCampanhas] = useState([])
-	const [CampanhaQuantidade, setCampanhaQuantidade] = useState(0)
+	const [GastosPorMes, setGastosPorMes] = useState({})
+	const [AdsetQuantidade, setAdsetQuantidade] = useState(0)
 	const [ClicksPorMes, setClicksPorMes] = useState({})
 	const { sales, tasks } = reportsLineChartData
 
 	useEffect(() => {
-		campanha().then((obj) => {
-			setCampanhas(obj)
-		})
-		console.log(tasks)
-
-		campanhaQuantidade().then((val) => {
-			setCampanhaQuantidade(val)
+		adsetQuantidade().then((val) => {
+			setAdsetQuantidade(val)
 		})
 
 		clicksPorMes().then((value) => {
 			setClicksPorMes(value)
 		})
-	}, [CampanhaQuantidade])
+
+		gastosPorMes().then((val) => setGastosPorMes(val))
+	}, [AdsetQuantidade])
 
 	return (
 		<DashboardLayout>
@@ -69,8 +66,8 @@ export default function index() {
 							<ComplexStatisticsCard
 								color='dark'
 								icon='weekend'
-								title='Numero de campanhas'
-								count={CampanhaQuantidade}
+								title='Numero de adsets'
+								count={AdsetQuantidade}
 								percentage={{
 									color: 'success',
 									amount: '+55%',
@@ -133,7 +130,7 @@ export default function index() {
 						</Grid>
 						<Grid item xs={12} md={6} lg={4}>
 							<MDBox mb={3}>
-								<ReportsLineChart color='success' title='gastos' description='Gastos dos campanhas do ultimos meses' date='atualizado agora' chart={sales} />
+								<ReportsLineChart color='success' title='gastos' description='Gastos dos campanhas do ultimos meses' date='atualizado agora' chart={GastosPorMes} />
 							</MDBox>
 						</Grid>
 						<Grid item xs={12} md={6} lg={4}>

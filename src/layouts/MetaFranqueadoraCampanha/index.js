@@ -32,7 +32,7 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
-import { campanha, clicksPorMes, campanhaQuantidade } from './controller.ts'
+import { campanha, clicksPorMes, campanhaQuantidade, gastosPorMes } from './controller.js'
 
 // Dashboard components
 import Projects from 'layouts/dashboard/components/Projects'
@@ -41,6 +41,7 @@ import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 export default function index() {
 	const [Campanhas, setCampanhas] = useState([])
 	const [CampanhaQuantidade, setCampanhaQuantidade] = useState(0)
+	const [GastosPorMes, setGastosPorMes] = useState({})
 	const [ClicksPorMes, setClicksPorMes] = useState({})
 	const { sales, tasks } = reportsLineChartData
 
@@ -56,6 +57,10 @@ export default function index() {
 
 		clicksPorMes().then((value) => {
 			setClicksPorMes(value)
+		})
+
+		gastosPorMes().then((val) => {
+			setGastosPorMes(val)
 		})
 	}, [CampanhaQuantidade])
 
@@ -133,7 +138,7 @@ export default function index() {
 						</Grid>
 						<Grid item xs={12} md={6} lg={4}>
 							<MDBox mb={3}>
-								<ReportsLineChart color='success' title='gastos' description='Gastos dos campanhas do ultimos meses' date='atualizado agora' chart={sales} />
+								<ReportsLineChart color='success' title='gastos' description='Gastos dos campanhas do ultimos meses' date='atualizado agora' chart={GastosPorMes} />
 							</MDBox>
 						</Grid>
 						<Grid item xs={12} md={6} lg={4}>

@@ -128,7 +128,7 @@ const clicksPorMes = () => {
 const gastosPorMes = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
-			acao: 'gastos_por_mes',
+			acao: 'gastos_por_mes True',
 			dados: 'campanhas',
 			perfil: 'franqueadora',
 			filtro: '',
@@ -153,4 +153,4 @@ const gastosPorMes = () => {
 	})
 }
 
-export { campanha, adsets, clicksPorMes, campanhaQuantidade }
+export { campanha, adsets, clicksPorMes, campanhaQuantidade, gastosPorMes }

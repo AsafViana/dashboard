@@ -32,26 +32,33 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData'
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData'
-import { campanha, clicksPorMes, campanhaQuantidade } from './controller.ts'
+import { clicksPorMes, adsetQuantidade, gastosPorMes } from './controller.js'
 
 // Dashboard components
 import Projects from 'layouts/dashboard/components/Projects'
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
 export default function index() {
-	const [CampanhaQuantidade, setCampanhaQuantidade] = useState(0)
+	const [AdsetQuantidade, setAdsetQuantidade] = useState(0)
+	const [GastoPorMes, setGastoPorMes] = useState({})
 	const [ClicksPorMes, setClicksPorMes] = useState({})
 	const { sales, tasks } = reportsLineChartData
 
 	useEffect(() => {
-		campanhaQuantidade().then((val) => {
-			setCampanhaQuantidade(val)
+		console.log(sales)
+		adsetQuantidade().then((val) => {
+			setAdsetQuantidade(val)
 		})
 
 		clicksPorMes().then((value) => {
 			setClicksPorMes(value)
 		})
-	}, [CampanhaQuantidade])
+
+		gastosPorMes().then((val) => {
+			setGastoPorMes(val)
+			console.log(val)
+		})
+	}, [])
 
 	return (
 		<DashboardLayout>
@@ -64,7 +71,7 @@ export default function index() {
 								color='dark'
 								icon='weekend'
 								title='Numero de campanhas'
-								count={CampanhaQuantidade}
+								count={AdsetQuantidade}
 								percentage={{
 									color: 'success',
 									amount: '+55%',
@@ -127,7 +134,7 @@ export default function index() {
 						</Grid>
 						<Grid item xs={12} md={6} lg={4}>
 							<MDBox mb={3}>
-								<ReportsLineChart color='success' title='gastos' description='Gastos dos campanhas do ultimos meses' date='atualizado agora' chart={sales} />
+								<ReportsLineChart color='success' title='gastos' description='Gastos dos campanhas do ultimos meses' date='atualizado agora' chart={GastoPorMes} />
 							</MDBox>
 						</Grid>
 						<Grid item xs={12} md={6} lg={4}>

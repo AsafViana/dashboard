@@ -13,11 +13,11 @@ const meses = {
 	dezembro: 12,
 }
 
-const campanha = () => {
+const adset = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
 			acao: 'receber',
-			dados: 'campanhas',
+			dados: 'adsets',
 			perfil: 'franqueadora',
 			filtro: '',
 			range: 0,
@@ -41,11 +41,11 @@ const campanha = () => {
 	})
 }
 
-const campanhaQuantidade = () => {
+const adsetQuantidade = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
-			acao: 'quantidade_campanha',
-			dados: 'campanhas',
+			acao: 'quantidade_adset',
+			dados: 'adsets',
 			perfil: 'franqueadora',
 			filtro: '',
 			range: 0,
@@ -63,34 +63,6 @@ const campanhaQuantidade = () => {
 				// Tratar erros aqui
 				reject(new Error(`Erro ${request.status}: ${request.statusText}`))
 				console.error('Erro na requisição:', request.status, request.statusText)
-			}
-		}
-		request.send(data)
-	})
-}
-
-const adsets = () => {
-	return new Promise((resolve, reject) => {
-		const data = JSON.stringify({
-			acao: 'receber',
-			dados: 'campanhas',
-			perfil: 'franqueadora',
-			filtro: '',
-		})
-		const request = new XMLHttpRequest()
-		request.open('POST', 'http://127.0.0.1:5000/meta', true)
-
-		request.setRequestHeader('Content-Type', 'application/json')
-		request.onload = function () {
-			if (request.status === 200) {
-				// Requisição bem-sucedida
-				const resposta = JSON.parse(request.responseText)
-				console.log(resposta)
-				resolve(resposta)
-			} else {
-				// Tratar erros aqui
-				console.error('Erro na requisição:', request.status, request.statusText)
-				reject(new Error(`Erro ${request.status}: ${request.statusText}`))
 			}
 		}
 		request.send(data)
@@ -101,7 +73,7 @@ const clicksPorMes = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
 			acao: 'clicks_por_mes True',
-			dados: 'campanhas',
+			dados: 'adsets',
 			perfil: 'franqueadora',
 			filtro: '',
 			range: 0,
@@ -128,8 +100,8 @@ const clicksPorMes = () => {
 const gastosPorMes = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
-			acao: 'gastos_por_mes',
-			dados: 'campanhas',
+			acao: 'gastos_por_mes True',
+			dados: 'adsets',
 			perfil: 'franqueadora',
 			filtro: '',
 			range: 0,
@@ -153,4 +125,4 @@ const gastosPorMes = () => {
 	})
 }
 
-export { campanha, adsets, clicksPorMes, campanhaQuantidade }
+export { adset, clicksPorMes, adsetQuantidade, gastosPorMes }

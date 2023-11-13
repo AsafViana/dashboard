@@ -37,8 +37,8 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import MetaFranqueadoraCampanha from 'layouts/MetaFranqueadoraCampanha'
+import MetaFranqueadoraAdset from 'layouts/MetaFranqueadoraAdset'
 import MetaFranquiaCampanha from 'layouts/MetaFranquiasCampanha'
-import MetaFranqueadoraAdset from 'layouts/MetaFranqueadoraAdset.js'
 import MetaFranquiaAdset from 'layouts/MetaFranquiasAdset'
 import Google from 'layouts/Google/Google'
 /* import Linx from 'layouts/dashboard/screens/Linx' */
@@ -63,7 +63,7 @@ const routes = [
 	{
 		type: 'collapse',
 		name: 'Meta Franqueadora',
-		key: 'metaFranqueadoraAdset',
+		key: 'meta-franqueadora-adset',
 		icon: (
 			<SvgIcon fontSize='medium'>
 				<MetaIcon />
@@ -75,7 +75,7 @@ const routes = [
 	{
 		type: 'collapse',
 		name: 'Meta Franquias',
-		key: 'metaFranquiasAdset',
+		key: 'meta-franquias-adset',
 		icon: (
 			<SvgIcon fontSize='medium'>
 				<MetaIcon />
@@ -88,7 +88,7 @@ const routes = [
 	{
 		type: 'collapse',
 		name: 'Meta Franqueadora',
-		key: 'metaFranqueadoraCampanha',
+		key: 'meta-franqueadora-campanha',
 		icon: (
 			<SvgIcon fontSize='medium'>
 				<MetaIcon />
@@ -100,7 +100,7 @@ const routes = [
 	{
 		type: 'collapse',
 		name: 'Meta Franquias',
-		key: 'metaFranquiasCampanha',
+		key: 'meta-franquias-campanha',
 		icon: (
 			<SvgIcon fontSize='medium'>
 				<MetaIcon />
