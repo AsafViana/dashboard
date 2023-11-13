@@ -145,7 +145,7 @@ export default function App() {
 			{layout === 'dashboard' && (
 				<>
 					<Sidenav color={sidenavColor} brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite} brandName='Compania Dashboard' routes={routes} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave} />
-					<Configurator /> 
+					<Configurator />
 					{configsButton}
 				</>
 			)}
