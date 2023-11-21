@@ -13,6 +13,8 @@ const meses = {
 	dezembro: 12,
 }
 
+const urlApi = process.env.URL_API
+
 const campanha = () => {
 	return new Promise((resolve, reject) => {
 		const data = JSON.stringify({
@@ -23,7 +25,7 @@ const campanha = () => {
 			range: 0,
 		})
 		const request = new XMLHttpRequest()
-		request.open('POST', 'http://127.0.0.1:5000/meta', true)
+		request.open('POST', urlApi + 'meta', true)
 
 		request.setRequestHeader('Content-Type', 'application/json')
 		request.onload = function () {
@@ -51,7 +53,7 @@ const campanhaQuantidade = () => {
 			range: 0,
 		})
 		const request = new XMLHttpRequest()
-		request.open('POST', 'http://127.0.0.1:5000/meta', true)
+		request.open('POST', urlApi + 'meta', true)
 
 		request.setRequestHeader('Content-Type', 'application/json')
 		request.onload = function () {
@@ -78,7 +80,7 @@ const adsets = () => {
 			filtro: '',
 		})
 		const request = new XMLHttpRequest()
-		request.open('POST', 'http://127.0.0.1:5000/meta', true)
+		request.open('POST', urlApi + 'meta', true)
 
 		request.setRequestHeader('Content-Type', 'application/json')
 		request.onload = function () {
@@ -107,7 +109,7 @@ const clicksPorMes = () => {
 			range: 0,
 		})
 		const request = new XMLHttpRequest()
-		request.open('POST', 'http://127.0.0.1:5000/meta', true)
+		request.open('POST', urlApi + 'meta', true)
 
 		request.setRequestHeader('Content-Type', 'application/json')
 		request.onload = function () {
@@ -135,7 +137,7 @@ const gastosPorMes = () => {
 			range: 0,
 		})
 		const request = new XMLHttpRequest()
-		request.open('POST', 'http://127.0.0.1:5000/meta', true)
+		request.open('POST', urlApi + 'meta', true)
 
 		request.setRequestHeader('Content-Type', 'application/json')
 		request.onload = function () {
