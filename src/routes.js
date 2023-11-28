@@ -42,6 +42,9 @@ import MetaFranquiaCampanha from 'layouts/MetaFranquiasCampanha'
 import MetaFranquiaAdset from 'layouts/MetaFranquiasAdset'
 import Google from 'layouts/Google/Google'
 /* import Linx from 'layouts/dashboard/screens/Linx' */
+import Profile from 'layouts/profile'
+import SignIn from 'layouts/authentication/sign-in'
+import SignUp from 'layouts/authentication/sign-up'
 
 // @mui icons
 import Icon from '@mui/material/Icon'
@@ -109,9 +112,7 @@ const routes = [
 		route: '/meta-franquias-campanha',
 		component: <MetaFranquiaCampanha />,
 	},
-	{
-		type: 'divider',
-	},
+	{ type: 'divider' },
 	{
 		type: 'collapse',
 		name: 'Google',
@@ -124,6 +125,7 @@ const routes = [
 		route: '/google',
 		component: <Google />,
 	},
+	{ type: 'divider' },
 	/* {
 		type: 'collapse',
 		name: 'Linx',
@@ -143,7 +145,7 @@ const routes = [
 		icon: <Icon fontSize='small'>notifications</Icon>,
 		route: '/notifications',
 		component: <Notifications />,
-	},
+	},*/
 	{
 		type: 'collapse',
 		name: 'Profile',
@@ -157,7 +159,7 @@ const routes = [
 		name: 'Sign In',
 		key: 'sign-in',
 		icon: <Icon fontSize='small'>login</Icon>,
-		route: '/authentication/sign-in',
+		route: '/sign-in',
 		component: <SignIn />,
 	},
 	{
@@ -165,9 +167,9 @@ const routes = [
 		name: 'Sign Up',
 		key: 'sign-up',
 		icon: <Icon fontSize='small'>assignment</Icon>,
-		route: '/authentication/sign-up',
+		route: '/sign-up',
 		component: <SignUp />,
-	}, */
+	},
 	,
 ]
 

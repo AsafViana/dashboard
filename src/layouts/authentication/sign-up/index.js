@@ -32,7 +32,26 @@ import CoverLayout from 'layouts/authentication/components/CoverLayout'
 // Images
 import bgImage from 'assets/images/bg-sign-up-cover.jpeg'
 
+//React
+import { useEffect, useState } from 'react'
+
+//Controller
+import { handleSignIn } from './controller'
+
 function Cover() {
+	const [Email, setEmail] = useState()
+	const [Nome, setNome] = useState()
+	const [Senha, setSenha] = useState()
+	const [AceitaTermos, setAceitaTermos] = useState(false)
+	const [Disabled, setDisabled] = useState(true)
+
+	useEffect(() => {
+		if (!!Email && !!Nome && !!Senha && AceitaTermos === true) {
+			setDisabled(false)
+		} else {
+			setDisabled(true)
+		}
+	}, [Email, Nome, Senha, AceitaTermos])
 	return (
 		<CoverLayout image={bgImage}>
 			<Card>
@@ -47,16 +66,16 @@ function Cover() {
 				<MDBox pt={4} pb={3} px={3}>
 					<MDBox component='form' role='form'>
 						<MDBox mb={2}>
-							<MDInput type='text' label='Name' variant='standard' fullWidth />
+							<MDInput value={Nome} onChange={(e) => setNome(e.target.value)} label='Name' variant='standard' type='text' fullWidth />
 						</MDBox>
 						<MDBox mb={2}>
-							<MDInput type='email' label='Email' variant='standard' fullWidth />
+							<MDInput value={Email} onChange={(e) => setEmail(e.target.value)} label='Email' variant='standard' type='email' fullWidth />
 						</MDBox>
 						<MDBox mb={2}>
-							<MDInput type='password' label='Password' variant='standard' fullWidth />
+							<MDInput value={Senha} onChange={(e) => setSenha(e.target.value)} label='Password' type='password' variant='standard' fullWidth />
 						</MDBox>
 						<MDBox display='flex' alignItems='center' ml={-1}>
-							<Checkbox />
+							<Checkbox checked={AceitaTermos} onChange={() => setAceitaTermos(!AceitaTermos)} />
 							<MDTypography variant='button' fontWeight='regular' color='text' sx={{ cursor: 'pointer', userSelect: 'none', ml: -1 }}>
 								&nbsp;&nbsp;I agree the&nbsp;
 							</MDTypography>
@@ -65,7 +84,14 @@ function Cover() {
 							</MDTypography>
 						</MDBox>
 						<MDBox mt={4} mb={1}>
-							<MDButton variant='gradient' color='info' fullWidth>
+							<MDButton
+								disabled={Disabled}
+								onClick={() => {
+									handleSignIn(Nome, Email, Senha)
+								}}
+								variant='gradient'
+								color='info'
+								fullWidth>
 								sign in
 							</MDButton>
 						</MDBox>

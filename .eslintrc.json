@@ -11,27 +11,8 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": [ "prettier"],
+	"plugins": ["react"],
 	"rules": {
-		"prettier/prettier": [
-			"error",
-			{
-				"arrowParens": "always",
-				"bracketSpacing": true,
-				"jsxBracketSameLine": true,
-				"jsxSingleQuote": true,
-				"singleQuote": true,
-				"semi": false,
-				"printWidth": 300,
-				"useTabs": true,
-				"tabWidth": 3,
-				"trailingComma": "es5",
-				"requirePragma": false,
-				"quoteProps": "consistent",
-				"bracketSameLine": false,
-				"proseWrap": "never"
-			}
-		],
 		"react/display-name": "off",
 		"default-param-last": "off",
 		"react/react-in-jsx-scope": "off",

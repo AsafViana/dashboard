@@ -13,7 +13,7 @@ const meses = {
 	dezembro: 12,
 }
 
-const urlApi = process.env.URL_API
+const urlApi = process.env.REACT_APP_URL_API
 
 const adset = () => {
 	return new Promise((resolve, reject) => {

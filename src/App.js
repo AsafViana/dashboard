@@ -53,12 +53,15 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from 'co
 import brandWhite from 'assets/images/cia.png'
 import brandDark from 'assets/images/ciaDark.png'
 
+import {onAuthStateChanged} from './service/firebase'
+
 export default function App() {
 	const [controller, dispatch] = useMaterialUIController()
 	const { miniSidenav, direction, layout, openConfigurator, sidenavColor, transparentSidenav, whiteSidenav, darkMode } = controller
 	const [onMouseEnter, setOnMouseEnter] = useState(false)
 	const [rtlCache, setRtlCache] = useState(null)
 	const { pathname } = useLocation()
+	const [Rota, setRota] = useState('/sign-up')
 
 	// Cache for the rtl
 	useMemo(() => {
@@ -152,7 +155,7 @@ export default function App() {
 			{layout === 'vr' && <Configurator />}
 			<Routes>
 				{getRoutes(routes)}
-				<Route path='*' element={<Navigate to='/meta-franqueadora-adset' />} />
+				<Route path='*' element={<Navigate to='/sign-in' />} />
 			</Routes>
 		</ThemeProvider>
 	)
