@@ -45,7 +45,6 @@ export default function index() {
 	const { sales, tasks } = reportsLineChartData
 
 	useEffect(() => {
-		console.log(sales)
 		adsetQuantidade().then((val) => {
 			setAdsetQuantidade(val)
 		})

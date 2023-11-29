@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // react-router-dom components
 import { Link } from 'react-router-dom'
@@ -41,10 +41,28 @@ import BasicLayout from 'layouts/authentication/components/BasicLayout'
 // Images
 import bgImage from 'assets/images/bg-sign-in-basic.jpeg'
 
+//Controller
+import { handleSignIn, handleSignInGoogle, auth } from './controller'
+
+import {useNavigate} from 'react-router-dom'
+
 function Basic() {
 	const [rememberMe, setRememberMe] = useState(false)
+	const [Email, setEmail] = useState('')
+	const [Senha, setSenha] = useState('')
+	const [Disable, setDisable] = useState(true)
+
+	const navigate = useNavigate()
 
 	const handleSetRememberMe = () => setRememberMe(!rememberMe)
+
+	useEffect(() => {
+		if (!!Email && !!Senha) {
+			setDisable(false)
+		} else {
+			setDisable(true)
+		}
+	}, [Email, Senha])
 
 	return (
 		<BasicLayout image={bgImage}>
@@ -65,7 +83,7 @@ function Basic() {
 							</MDTypography>
 						</Grid>
 						<Grid item xs={2}>
-							<MDTypography component={MuiLink} href='#' variant='body1' color='white'>
+							<MDTypography onClick={() => handleSignInGoogle(navigate)} component={MuiLink} href='#' variant='body1' color='white'>
 								<GoogleIcon color='inherit' />
 							</MDTypography>
 						</Grid>
@@ -74,10 +92,10 @@ function Basic() {
 				<MDBox pt={4} pb={3} px={3}>
 					<MDBox component='form' role='form'>
 						<MDBox mb={2}>
-							<MDInput type='email' label='Email' fullWidth />
+							<MDInput value={Email} onChange={(e) => setEmail(e.target.value)} type='email' label='Email' fullWidth />
 						</MDBox>
 						<MDBox mb={2}>
-							<MDInput type='password' label='Password' fullWidth />
+							<MDInput value={Senha} onChange={(e) => setSenha(e.target.value)} type='password' label='Password' fullWidth />
 						</MDBox>
 						<MDBox display='flex' alignItems='center' ml={-1}>
 							<Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -86,14 +104,14 @@ function Basic() {
 							</MDTypography>
 						</MDBox>
 						<MDBox mt={4} mb={1}>
-							<MDButton variant='gradient' color='info' fullWidth>
+							<MDButton disabled={Disable} onClick={() => handleSignIn(Email, Senha, rememberMe, navigate)} variant='gradient' color='info' fullWidth>
 								sign in
 							</MDButton>
 						</MDBox>
 						<MDBox mt={3} mb={1} textAlign='center'>
 							<MDTypography variant='button' color='text'>
 								Don&apos;t have an account?{' '}
-								<MDTypography component={Link} to='/authentication/sign-up' variant='button' color='info' fontWeight='medium' textGradient>
+								<MDTypography component={Link} to='/sign-up' variant='button' color='info' fontWeight='medium' textGradient>
 									Sign up
 								</MDTypography>
 							</MDTypography>

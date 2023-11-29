@@ -36,7 +36,7 @@ import bgImage from 'assets/images/bg-sign-up-cover.jpeg'
 import { useEffect, useState } from 'react'
 
 //Controller
-import { handleSignIn } from './controller'
+import { handleSignUp } from './controller'
 
 function Cover() {
 	const [Email, setEmail] = useState()
@@ -87,7 +87,7 @@ function Cover() {
 							<MDButton
 								disabled={Disabled}
 								onClick={() => {
-									handleSignIn(Nome, Email, Senha)
+									handleSignUp(Nome, Email, Senha)
 								}}
 								variant='gradient'
 								color='info'
@@ -98,7 +98,7 @@ function Cover() {
 						<MDBox mt={3} mb={1} textAlign='center'>
 							<MDTypography variant='button' color='text'>
 								Already have an account?{' '}
-								<MDTypography component={Link} to='/authentication/sign-in' variant='button' color='info' fontWeight='medium' textGradient>
+								<MDTypography component={Link} to='/sign-in' variant='button' color='info' fontWeight='medium' textGradient>
 									Sign In
 								</MDTypography>
 							</MDTypography>

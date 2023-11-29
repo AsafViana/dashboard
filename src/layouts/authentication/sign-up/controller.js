@@ -1,6 +1,6 @@
 import { auth, createUserWithEmailAndPassword, updateProfile, addDoc, collection, db } from '../../../service/firebase'
 
-const handleSignIn = (nome, email, senha) => {
+const handleSignUp = (nome, email, senha) => {
 	createUserWithEmailAndPassword(auth, email, senha)
 		.then(async (user) => {
 			updateProfile(user.user, { displayName: formatarNomeProprio(nome) })
@@ -35,4 +35,4 @@ function formatarNomeProprio(nome) {
 	return nomeFormatado
 }
 
-export { handleSignIn }
+export { handleSignUp }

@@ -38,7 +38,7 @@ import breakpoints from 'assets/theme/base/breakpoints'
 import burceMars from 'assets/images/bruce-mars.jpg'
 import backgroundImage from 'assets/images/bg-profile.jpeg'
 
-function Header({ children }) {
+function Header({ nome, foto, children }) {
 	const [tabsOrientation, setTabsOrientation] = useState('horizontal')
 	const [tabValue, setTabValue] = useState(0)
 
@@ -48,7 +48,7 @@ function Header({ children }) {
 			return window.innerWidth < breakpoints.values.sm ? setTabsOrientation('vertical') : setTabsOrientation('horizontal')
 		}
 
-		/** 
+		/**
      The event listener that's calling the handleTabsOrientation function when resizing the window.
     */
 		window.addEventListener('resize', handleTabsOrientation)
@@ -87,12 +87,12 @@ function Header({ children }) {
 				}}>
 				<Grid container spacing={3} alignItems='center'>
 					<Grid item>
-						<MDAvatar src={burceMars} alt='profile-image' size='xl' shadow='sm' />
+						<MDAvatar src={foto} alt='profile-image' size='xl' shadow='sm' />
 					</Grid>
 					<Grid item>
 						<MDBox height='100%' mt={0.5} lineHeight={1}>
 							<MDTypography variant='h5' fontWeight='medium'>
-								Richard Davis
+								{nome}
 							</MDTypography>
 							<MDTypography variant='button' color='text' fontWeight='regular'>
 								CEO / Co-Founder
@@ -144,6 +144,8 @@ Header.defaultProps = {
 // Typechecking props for the Header
 Header.propTypes = {
 	children: PropTypes.node,
+	nome: PropTypes.string.isRequired,
+	foto: PropTypes.string.isRequired,
 }
 
 export default Header

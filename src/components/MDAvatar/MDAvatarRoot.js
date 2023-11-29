@@ -25,10 +25,8 @@ export default styled(Avatar)(({ theme, ownerState }) => {
 	const { pxToRem, linearGradient } = functions
 	const { size: fontSize, fontWeightRegular } = typography
 
-	// backgroundImage value
 	const backgroundValue = bgColor === 'transparent' ? transparent.main : linearGradient(gradients[bgColor].main, gradients[bgColor].state)
 
-	// size value
 	let sizeValue
 
 	switch (size) {
@@ -77,10 +75,13 @@ export default styled(Avatar)(({ theme, ownerState }) => {
 	}
 
 	return {
-		background: backgroundValue,
-		color: white.main,
-		fontWeight: fontWeightRegular,
-		boxShadow: boxShadows[shadow],
+		'background': backgroundValue,
+		'color': white.main,
+		'fontWeight': fontWeightRegular,
+		'boxShadow': boxShadows[shadow],
 		...sizeValue,
+		'display': 'flex',
+		'alignItems': 'center',
+		'justifyContent': 'center',
 	}
 })

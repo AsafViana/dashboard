@@ -100,6 +100,18 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
 			)
 		} else if (type === 'divider') {
 			returnValue = <Divider key={key} light={(!darkMode && !whiteSidenav && !transparentSidenav) || (darkMode && !transparentSidenav && whiteSidenav)} />
+		}else if (type === 'fora'){
+			returnValue = <></>
+		}else if (type === 'vermelho'){
+			returnValue = href ? (
+				<Link href={href} key={key} target='_blank' rel='noreferrer' sx={{ textDecoration: 'none' }}>
+					<SidenavCollapse name={name} icon={icon} active={key === collapseName} noCollapse={noCollapse} />
+				</Link>
+			) : (
+				<NavLink key={key} to={route}>
+					<SidenavCollapse name={name} icon={icon} active={key === collapseName} />
+				</NavLink>
+			)
 		}
 
 		return returnValue

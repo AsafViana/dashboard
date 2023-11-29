@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useState, useEffect, useMemo } from 'react'
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 // @mui material components
 import { ThemeProvider } from '@mui/material/styles'
@@ -53,7 +53,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from 'co
 import brandWhite from 'assets/images/cia.png'
 import brandDark from 'assets/images/ciaDark.png'
 
-import {onAuthStateChanged} from './service/firebase'
+import {onAuthStateChanged, auth} from './service/firebase'
 
 export default function App() {
 	const [controller, dispatch] = useMaterialUIController()
@@ -61,7 +61,7 @@ export default function App() {
 	const [onMouseEnter, setOnMouseEnter] = useState(false)
 	const [rtlCache, setRtlCache] = useState(null)
 	const { pathname } = useLocation()
-	const [Rota, setRota] = useState('/sign-up')
+	const navigate = useNavigate()
 
 	// Cache for the rtl
 	useMemo(() => {
@@ -102,6 +102,18 @@ export default function App() {
 		document.documentElement.scrollTop = 0
 		document.scrollingElement.scrollTop = 0
 	}, [pathname])
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				navigate('/meta-franqueadora-adset')
+			}
+		})
+
+		return () => {
+			// Realize operações de limpeza, se necessário
+			unsubscribe()
+		}
+	}, []) // Adicione 'navigate' à lista de dependências se necessário
 
 	const getRoutes = (allRoutes) =>
 		allRoutes.map((route) => {
