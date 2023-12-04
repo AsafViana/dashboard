@@ -53,7 +53,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from 'co
 import brandWhite from 'assets/images/cia.png'
 import brandDark from 'assets/images/ciaDark.png'
 
-import {onAuthStateChanged, auth} from './service/firebase'
+import {onAuthStateChanged, auth, signOut} from './service/firebase'
 
 export default function App() {
 	const [controller, dispatch] = useMaterialUIController()
