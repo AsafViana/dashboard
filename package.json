@@ -13,24 +13,31 @@
 		"url": "git+https://github.com/creativetimofficial/material-dashboard-react.git"
 	},
 	"dependencies": {
+		"@date-io/date-fns": "^2.17.0",
 		"@emotion/cache": "11.10.8",
 		"@emotion/react": "11.10.8",
 		"@emotion/styled": "11.10.8",
-		"@mui/icons-material": "5.11.16",
-		"@mui/material": "5.12.3",
+		"@mui/icons-material": "^5.11.16",
+		"@mui/lab": "^5.0.0-alpha.67",
+		"@mui/material": "^5.14.20",
+		"@mui/x-date-pickers": "^6.18.4",
 		"axios": "^1.5.1",
 		"chart.js": "4.3.0",
 		"chroma-js": "2.4.2",
+		"date-fns": "^2.30.0",
+		"dayjs": "^1.11.10",
 		"firebase": "^10.7.0",
 		"pg-promise": "^11.5.4",
 		"prop-types": "15.8.1",
 		"react": "18.2.0",
 		"react-chartjs-2": "5.2.0",
+		"react-datepicker": "^4.24.0",
 		"react-dom": "18.2.0",
 		"react-github-btn": "1.4.0",
 		"react-router-dom": "6.11.0",
 		"react-scripts": "^5.0.1",
 		"react-table": "7.8.0",
+		"styled-components": "^6.1.1",
 		"stylis": "4.1.4",
 		"stylis-plugin-rtl": "^2.1.1",
 		"yup": "1.1.1"
@@ -73,5 +80,9 @@
 	},
 	"overrides": {
 		"svgo": "3.0.2"
+	},
+	"peerDependencies": {
+		"react": "^17.0.0 || ^18.0.0",
+		"react-dom": "^17.0.0 || ^18.0.0"
 	}
 }

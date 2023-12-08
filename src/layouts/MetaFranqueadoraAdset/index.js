@@ -38,11 +38,14 @@ import { clicksPorMes, adsetQuantidade, gastosPorMes } from './controller.js'
 import Projects from 'layouts/dashboard/components/Projects'
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { TextField } from '@mui/material'
+
 export default function index() {
+	const [selectedDate, setSelectedDate] = useState()
 	const [AdsetQuantidade, setAdsetQuantidade] = useState(0)
 	const [GastoPorMes, setGastoPorMes] = useState({})
 	const [ClicksPorMes, setClicksPorMes] = useState({})
-	const { sales, tasks } = reportsLineChartData
 
 	useEffect(() => {
 		adsetQuantidade().then((val) => {
@@ -61,6 +64,7 @@ export default function index() {
 
 	return (
 		<DashboardLayout>
+			<DatePicker label='Date Picker' value={selectedDate} onChange={(newValue) => setSelectedDate(newValue)} renderInput={(params) => <TextField {...params} />} />
 			<DashboardNavbar />
 			<MDBox py={3}>
 				<Grid container spacing={3}>
