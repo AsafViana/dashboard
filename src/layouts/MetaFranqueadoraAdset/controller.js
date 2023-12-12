@@ -43,15 +43,16 @@ const adset = () => {
 	})
 }
 
-const adsetQuantidade = () => {
+const adsetQuantidade = (data) => {
 	return new Promise((resolve, reject) => {
-		const data = JSON.stringify({
+		const requestData = {
 			acao: 'quantidade_adset',
 			dados: 'adsets',
 			perfil: 'franqueadora',
-			filtro: '',
+			filtro: `where 'date_start' = '${data}'`,
 			range: 0,
-		})
+		}
+
 		const request = new XMLHttpRequest()
 		request.open('POST', urlApi + 'meta', true)
 
@@ -67,17 +68,18 @@ const adsetQuantidade = () => {
 				console.error('Erro na requisição:', request.status, request.statusText)
 			}
 		}
-		request.send(data)
+
+		request.send(JSON.stringify(requestData))
 	})
 }
 
-const clicksPorMes = () => {
+const clicksPorMes = (data) => {
 	return new Promise((resolve, reject) => {
-		const data = JSON.stringify({
+		const requestData = JSON.stringify({
 			acao: 'clicks_por_mes True',
 			dados: 'adsets',
 			perfil: 'franqueadora',
-			filtro: '',
+			filtro: `where 'date_start' = '${data}'`,
 			range: 0,
 		})
 		const request = new XMLHttpRequest()
@@ -95,7 +97,7 @@ const clicksPorMes = () => {
 				console.error('Erro na requisição:', request.status, request.statusText)
 			}
 		}
-		request.send(data)
+		request.send(JSON.stringify(requestData))
 	})
 }
 

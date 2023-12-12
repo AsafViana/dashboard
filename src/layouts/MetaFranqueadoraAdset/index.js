@@ -40,32 +40,51 @@ import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { TextField } from '@mui/material'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import { styled } from '@mui/system'
+import dayjs from 'dayjs'
 
 export default function index() {
+	const [DataFormatada, setDataFormatada] = useState('')
 	const [selectedDate, setSelectedDate] = useState()
 	const [AdsetQuantidade, setAdsetQuantidade] = useState(0)
 	const [GastoPorMes, setGastoPorMes] = useState({})
 	const [ClicksPorMes, setClicksPorMes] = useState({})
 
+
 	useEffect(() => {
-		adsetQuantidade().then((val) => {
+		setDataFormatada(dayjs(new Date()).format('YYYY-MM-DD'))
+
+		adsetQuantidade(DataFormatada).then((val) => {
 			setAdsetQuantidade(val)
 		})
 
-		clicksPorMes().then((value) => {
+		clicksPorMes(DataFormatada).then((value) => {
 			setClicksPorMes(value)
 		})
 
-		gastosPorMes().then((val) => {
+		gastosPorMes(DataFormatada).then((val) => {
 			setGastoPorMes(val)
-			console.log(val)
 		})
-	}, [])
+
+		if (!!selectedDate){
+			const dateFormat = "YYYY-MM-DD"
+			const formattedDate = dayjs(selectedDate).format(dateFormat)
+			setDataFormatada(formattedDate)
+		}
+	}, [selectedDate])
+
+
+	const Calendar = styled(CalendarMonthIcon) ({
+		color: '#f1f1f1'
+	})
 
 	return (
 		<DashboardLayout>
-			<DatePicker label='Date Picker' value={selectedDate} onChange={(newValue) => setSelectedDate(newValue)} renderInput={(params) => <TextField {...params} />} />
 			<DashboardNavbar />
+			<DatePicker label='Data' value={selectedDate} onChange={(newValue) => setSelectedDate(newValue)} renderInput={(params) => <TextField {...params} />} components={{
+				OpenPickerIcon: Calendar
+			}} />
 			<MDBox py={3}>
 				<Grid container spacing={3}>
 					<Grid item xs={12} md={6} lg={3}>
