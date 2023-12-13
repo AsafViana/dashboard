@@ -75,13 +75,15 @@ const adsetQuantidade = (data) => {
 
 const clicksPorMes = (data) => {
 	return new Promise((resolve, reject) => {
+		const comando = !!data ? `where 'date_start' = '${data}'` : ''
 		const requestData = JSON.stringify({
 			acao: 'clicks_por_mes True',
 			dados: 'adsets',
 			perfil: 'franqueadora',
-			filtro: `where 'date_start' = '${data}'`,
+			filtro: comando,
 			range: 0,
 		})
+		console.log(requestData)
 		const request = new XMLHttpRequest()
 		request.open('POST', urlApi + 'meta', true)
 
