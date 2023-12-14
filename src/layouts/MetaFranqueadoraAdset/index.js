@@ -38,11 +38,8 @@ import { clicksPorMes, adsetQuantidade, gastosPorMes } from './controller.js'
 import Projects from 'layouts/dashboard/components/Projects'
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview'
 
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import { TextField } from '@mui/material'
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
-import { styled } from '@mui/system'
 import dayjs from 'dayjs'
+import DatePicker from '../../components/DatePickerCustomizado'
 
 export default function index() {
 	const [DataFormatada, setDataFormatada] = useState('')
@@ -61,6 +58,7 @@ export default function index() {
 
 		clicksPorMes(DataFormatada).then((value) => {
 			setClicksPorMes(value)
+			console.log(value)
 		})
 
 		gastosPorMes(DataFormatada).then((val) => {
@@ -75,16 +73,10 @@ export default function index() {
 	}, [selectedDate])
 
 
-	const Calendar = styled(CalendarMonthIcon) ({
-		color: '#f1f1f1'
-	})
-
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
-			<DatePicker label='Data' value={selectedDate} onChange={(newValue) => setSelectedDate(newValue)} renderInput={(params) => <TextField {...params} />} components={{
-				OpenPickerIcon: Calendar
-			}} />
+			<DatePicker value={selectedDate} onChange={setSelectedDate}/>
 			<MDBox py={3}>
 				<Grid container spacing={3}>
 					<Grid item xs={12} md={6} lg={3}>
