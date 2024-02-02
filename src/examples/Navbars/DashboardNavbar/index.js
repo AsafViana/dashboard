@@ -27,6 +27,11 @@ import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import Icon from '@mui/material/Icon'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import Box from '@mui/material/Box'
 
 // Material Dashboard 2 React components
 import MDBox from 'components/MDBox'
@@ -42,7 +47,7 @@ import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu 
 // Material Dashboard 2 React context
 import { useMaterialUIController, setTransparentNavbar, setMiniSidenav, setOpenConfigurator } from 'context'
 
-function DashboardNavbar({ absolute, light, isMini }) {
+function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, onChange }) {
 	const [navbarType, setNavbarType] = useState()
 	const [controller, dispatch] = useMaterialUIController()
 	const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller
@@ -75,10 +80,16 @@ function DashboardNavbar({ absolute, light, isMini }) {
 		return () => window.removeEventListener('scroll', handleTransparentNavbar)
 	}, [dispatch, fixedNavbar])
 
+	useEffect(() => console.log(valueSelect), [valueSelect])
+
 	const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav)
 	const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator)
 	const handleOpenMenu = (event) => setOpenMenu(event.currentTarget)
 	const handleCloseMenu = () => setOpenMenu(false)
+
+	 const handleChange = (event) => {
+			onChange(event.target.value)
+		}
 
 	// Render the notifications menu
 	const renderMenu = () => (
@@ -117,6 +128,25 @@ function DashboardNavbar({ absolute, light, isMini }) {
 				<MDBox color='inherit' mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
 					<Breadcrumbs icon='home' title={route[route.length - 1]} route={route} light={light} />
 				</MDBox>
+
+				{selectDados.length === 0 ? (
+					<></>
+				) : (
+					<Box sx={{ minWidth: 300 }}>
+						<FormControl fullWidth>
+							<InputLabel id='demo-simple-select-label'>Loja</InputLabel>
+							<Select labelId='demo-simple-select-label' id='demo-simple-select' defaultValue={10} value={valueSelect} label='Lojas' sx={{ height: 40 }} onChange={handleChange}>
+								{selectDados.map((value, index, array) => {
+									return (
+										<MenuItem key={value.cnpj} value={value.cnpj}>
+											{value.nome}
+										</MenuItem>
+									)
+								})}
+							</Select>
+						</FormControl>
+					</Box>
+				)}
 				{isMini ? null : (
 					<MDBox sx={(theme) => navbarRow(theme, { isMini })}>
 						<MDBox pr={1}>
@@ -153,6 +183,9 @@ DashboardNavbar.defaultProps = {
 	absolute: false,
 	light: false,
 	isMini: false,
+	selectDados: [],
+	onChange:  () => {},
+	valueSelect:  '',
 }
 
 // Typechecking props for the DashboardNavbar
@@ -160,6 +193,9 @@ DashboardNavbar.propTypes = {
 	absolute: PropTypes.bool,
 	light: PropTypes.bool,
 	isMini: PropTypes.bool,
+	selectDados: PropTypes.array,
+	onChange:  PropTypes.func,
+	valueSelect:  PropTypes.string,
 }
 
 export default DashboardNavbar

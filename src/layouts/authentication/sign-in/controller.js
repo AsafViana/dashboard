@@ -2,10 +2,9 @@ import { auth, signInWithEmailAndPassword, browserSessionPersistence, setPersist
 
 const handleSignIn = (email, senha, lembrar, navigate) => {
 	const onSuccess = () => {
-		alert('logado')
 		localStorage.setItem('email', email)
 		localStorage.setItem('senha', senha)
-		navigate('/meta-franqueadora-adset')
+		navigate('/linx')
 	}
 
 	const onError = (error) => {
@@ -37,7 +36,7 @@ const handleSignInGoogle = (navigate) => {
 						email: user.user.email,
 						uid: uid,
 					})
-					navigate('/meta-franqueadora-adset')
+					navigate('/linx')
 					console.log({
 						nome: user.user.displayName,
 						email: user.user.email,

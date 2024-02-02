@@ -41,7 +41,7 @@ import MetaFranqueadoraAdset from 'layouts/MetaFranqueadoraAdset'
 import MetaFranquiaCampanha from 'layouts/MetaFranquiasCampanha'
 import MetaFranquiaAdset from 'layouts/MetaFranquiasAdset'
 import Google from 'layouts/Google/Google'
-/* import Linx from 'layouts/dashboard/screens/Linx' */
+import Linx from 'layouts/Linx'
 import Profile from 'layouts/profile'
 import SignIn from 'layouts/authentication/sign-in'
 import SignUp from 'layouts/authentication/sign-up'
@@ -63,6 +63,20 @@ const routes = [
 		route: '/dashboard',
 		component: <Dashboard />,
 	}, */
+
+	{
+	  type: 'collapse',
+	  name: 'Linx',
+	  key: 'linx',
+	  icon: (
+		  <SvgIcon fontSize='medium'>
+			  <LinxIcon />
+		  </SvgIcon>
+	  ),
+	  route: '/linx',
+	  component: <Linx />,
+  	},
+	/* { type: 'divider' },
 	{ type: 'title', title: 'Adsets' },
 	{
 		type: 'collapse',
@@ -125,20 +139,8 @@ const routes = [
 		),
 		route: '/google',
 		component: <Google />,
-	},
-	{ type: 'divider' },
-	/* {
-		type: 'collapse',
-		name: 'Linx',
-		key: 'linx',
-		icon: (
-			<SvgIcon fontSize='medium'>
-				<LinxIcon />
-			</SvgIcon>
-		),
-		route: '/linx',
-		component: <Linx />,
 	}, */
+	{ type: 'divider' },
 	/*{
 		type: 'collapse',
 		name: 'Notifications',

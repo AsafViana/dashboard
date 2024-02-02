@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect, useMemo } from 'react'
 
 // react-router components
@@ -53,7 +38,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from 'co
 import brandWhite from 'assets/images/cia.png'
 import brandDark from 'assets/images/ciaDark.png'
 
-import {onAuthStateChanged, auth, signOut} from './service/firebase'
+import { onAuthStateChanged, auth, signOut } from './service/firebase'
 
 export default function App() {
 	const [controller, dispatch] = useMaterialUIController()
@@ -82,10 +67,10 @@ export default function App() {
 	}
 
 	// Close sidenav when mouse leave mini sidenav
-	const handleOnMouseLeave = () => {
+	const handleOnMouseLeave = () => { 
 		if (onMouseEnter) {
-			setMiniSidenav(dispatch, true)
-			setOnMouseEnter(false)
+			//setMiniSidenav(dispatch, true)
+			//setOnMouseEnter(false)
 		}
 	}
 

@@ -61,7 +61,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
 	useEffect(() => {
 		// A function that sets the mini state of the sidenav.
 		function handleMiniSidenav() {
-			setMiniSidenav(dispatch, window.innerWidth < 1200)
+			setMiniSidenav(dispatch, true)
 			setTransparentSidenav(dispatch, window.innerWidth < 1200 ? false : transparentSidenav)
 			setWhiteSidenav(dispatch, window.innerWidth < 1200 ? false : whiteSidenav)
 		}
@@ -100,9 +100,9 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
 			)
 		} else if (type === 'divider') {
 			returnValue = <Divider key={key} light={(!darkMode && !whiteSidenav && !transparentSidenav) || (darkMode && !transparentSidenav && whiteSidenav)} />
-		}else if (type === 'fora'){
+		} else if (type === 'fora') {
 			returnValue = <></>
-		}else if (type === 'vermelho'){
+		} else if (type === 'vermelho') {
 			returnValue = href ? (
 				<Link href={href} key={key} target='_blank' rel='noreferrer' sx={{ textDecoration: 'none' }}>
 					<SidenavCollapse name={name} icon={icon} active={key === collapseName} noCollapse={noCollapse} />
@@ -118,25 +118,27 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
 	})
 
 	return (
-		<SidenavRoot {...rest} variant='permanent' ownerState={{ transparentSidenav, whiteSidenav, miniSidenav, darkMode }}>
-			<MDBox pt={3} pb={1} px={4} textAlign='center'>
-				<MDBox display={{ xs: 'block', xl: 'none' }} position='absolute' top={0} right={0} p={1.625} onClick={closeSidenav} sx={{ cursor: 'pointer' }}>
-					<MDTypography variant='h6' color='secondary'>
-						<Icon sx={{ fontWeight: 'bold' }}>close</Icon>
-					</MDTypography>
-				</MDBox>
-				<MDBox component={NavLink} to='/' display='flex' alignItems='center'>
-					{brand && <MDBox component='img' src={brand} alt='Brand' width='2rem' />}
-					<MDBox width={!brandName && '100%'} sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}>
-						<MDTypography component='h6' variant='button' fontWeight='medium' color={textColor}>
-							{brandName}
+		<div onMouseEnter={() => setMiniSidenav(dispatch, false)} onMouseLeave={() => setMiniSidenav(dispatch, true)}>
+			<SidenavRoot {...rest} variant='permanent' ownerState={{ transparentSidenav, whiteSidenav, miniSidenav, darkMode }}>
+				<MDBox pt={3} pb={1} px={4} textAlign='center'>
+					<MDBox display={{ xs: 'block', xl: 'none' }} position='absolute' top={0} right={0} p={1.625} onClick={closeSidenav} sx={{ cursor: 'pointer' }}>
+						<MDTypography variant='h6' color='secondary'>
+							<Icon sx={{ fontWeight: 'bold' }}>close</Icon>
 						</MDTypography>
 					</MDBox>
+					<MDBox component={NavLink} to='/' display='flex' alignItems='center'>
+						{brand && <MDBox component='img' src={brand} alt='Brand' width='2rem' />}
+						<MDBox width={!brandName && '100%'} sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}>
+							<MDTypography component='h6' variant='button' fontWeight='medium' color={textColor}>
+								{brandName}
+							</MDTypography>
+						</MDBox>
+					</MDBox>
 				</MDBox>
-			</MDBox>
-			<Divider light={(!darkMode && !whiteSidenav && !transparentSidenav) || (darkMode && !transparentSidenav && whiteSidenav)} />
-			<List>{renderRoutes}</List>
-		</SidenavRoot>
+				<Divider light={(!darkMode && !whiteSidenav && !transparentSidenav) || (darkMode && !transparentSidenav && whiteSidenav)} />
+				<List>{renderRoutes}</List>
+			</SidenavRoot>
+		</div>
 	)
 }
 

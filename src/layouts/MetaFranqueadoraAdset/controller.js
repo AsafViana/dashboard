@@ -83,7 +83,7 @@ const clicksPorMes = (data) => {
 			filtro: comando,
 			range: 0,
 		})
-		
+
 		const request = new XMLHttpRequest()
 		request.open('POST', urlApi + 'meta', true)
 

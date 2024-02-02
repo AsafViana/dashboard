@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { DatePicker, DatePickerToolbar } from '@mui/x-date-pickers/DatePicker'
-import StaticDatePicker from '@mui/x-date-pickers/StaticDatePicker'
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker'
 import { TextField } from '@mui/material'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import { styled } from '@mui/system'

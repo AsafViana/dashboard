@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "msedge",
+            "type": "chrome",
             "request": "launch",
-            "name": "Iniciar o Edge em relação a localhost",
-            "url": "http://localhost:8080",
+            "name": "Iniciar o chrome em relação a localhost",
+            "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}"
         }
     ]
