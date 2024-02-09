@@ -138,6 +138,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
 				<Divider light={(!darkMode && !whiteSidenav && !transparentSidenav) || (darkMode && !transparentSidenav && whiteSidenav)} />
 				<List>{renderRoutes}</List>
 			</SidenavRoot>
+			
 		</div>
 	)
 }

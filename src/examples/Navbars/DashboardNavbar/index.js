@@ -47,7 +47,7 @@ import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu 
 // Material Dashboard 2 React context
 import { useMaterialUIController, setTransparentNavbar, setMiniSidenav, setOpenConfigurator } from 'context'
 
-function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, onChange }) {
+function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, onChange, setViewRender }) {
 	const [navbarType, setNavbarType] = useState()
 	const [controller, dispatch] = useMaterialUIController()
 	const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller
@@ -80,14 +80,14 @@ function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, on
 		return () => window.removeEventListener('scroll', handleTransparentNavbar)
 	}, [dispatch, fixedNavbar])
 
-	useEffect(() => console.log(valueSelect), [valueSelect])
-
 	const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav)
 	const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator)
 	const handleOpenMenu = (event) => setOpenMenu(event.currentTarget)
 	const handleCloseMenu = () => setOpenMenu(false)
 
 	 const handleChange = (event) => {
+			console.log(event.target.value)
+			setViewRender(false)
 			onChange(event.target.value)
 		}
 
@@ -196,6 +196,7 @@ DashboardNavbar.propTypes = {
 	selectDados: PropTypes.array,
 	onChange:  PropTypes.func,
 	valueSelect:  PropTypes.string,
+	setViewRender: PropTypes.func.isRequired,
 }
 
 export default DashboardNavbar
