@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
-// @mui material components
+// Componentes do Material-UI
 import Grid from '@mui/material/Grid'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
@@ -9,25 +9,21 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 
-// Material Dashboard 2 React components
+// Componentes do Material Dashboard 2 React
 import MDBox from 'components/MDBox'
 
-// Material Dashboard 2 React example components
+// Componentes de exemplo do Material Dashboard 2 React
 import DashboardLayout from 'examples/LayoutContainers/DashboardLayout'
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar'
-import Footer from 'examples/Footer'
-import ReportsBarChart from 'examples/Charts/BarCharts/ReportsBarChart'
-import ReportsLineChart from 'examples/Charts/LineCharts/ReportsLineChart'
 import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatisticsCard'
 
-// Controller
+// Controlador
 import { GetLojas, GetDadosLojas } from './controller'
 
-export default function index() {
+export default function Index() {
 	const [Selecionado, setSelecionado] = useState('todos')
 	const [Lojas, setLojas] = useState([])
 	const [DadosDasLojas, setDadosDasLojas] = useState({})
-	const [ExibirTelaTodos, setExibirTelaTodos] = useState(true)
 
 	const handleSelecionado = (selecionado) => {
 		setDadosDasLojas({})
@@ -48,7 +44,7 @@ export default function index() {
 		if (Selecionado === 'todos') {
 			return (
 				<DashboardLayout>
-					<DashboardNavbar setViewRender={setExibirTelaTodos} selectDados={Lojas} valueSelect={Selecionado} onChange={handleSelecionado} />
+					<DashboardNavbar selectDados={Lojas} valueSelect={Selecionado} onChange={handleSelecionado} />
 					{}
 					<Stack justifyContent='space-around' alignItems='center' direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
 						<Typography variant='h2' gutterBottom fontWeight={20}>
@@ -106,8 +102,8 @@ export default function index() {
 		} else {
 			return (
 				<DashboardLayout>
-					<DashboardNavbar setViewRender={setExibirTelaTodos} selectDados={Lojas} valueSelect={Selecionado} onChange={handleSelecionado} />
-					<Box py={3} sx={{ alignItems: 'center', width: '100%', backgrounColor: '#f1f1f1' }}>
+					<DashboardNavbar selectDados={Lojas} valueSelect={Selecionado} onChange={handleSelecionado} />
+					<Box py={3} sx={{ alignItems: 'center', width: '100%' }}>
 						<Grid container spacing={3} sx={{ justifyContent: 'center', alignItems: '', width: '100%' }}>
 							<Grid item xs={12} md={6} lg={3}>
 								<MDBox mb={1.5}>
@@ -144,7 +140,7 @@ export default function index() {
 			<DashboardLayout>
 				<DashboardNavbar selectDados={Lojas} valueSelect={Selecionado} onChange={setSelecionado} />
 				<Grid container justifyContent='center' alignItems='center' style={{ height: '100vh' }}>
-					<CircularProgress color='inherit' />
+					<CircularProgress color='info' />
 				</Grid>
 			</DashboardLayout>
 		)
