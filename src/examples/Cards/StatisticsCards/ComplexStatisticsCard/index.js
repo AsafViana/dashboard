@@ -19,7 +19,7 @@ import PropTypes from 'prop-types'
 // @mui material components
 import Card from '@mui/material/Card'
 import Divider from '@mui/material/Divider'
-import Icon from '@mui/material/Icon'
+import Typography from '@mui/material/Typography'
 
 // Material Dashboard 2 React components
 import MDBox from 'components/MDBox'
@@ -29,10 +29,10 @@ function ComplexStatisticsCard({ color, title, count, percentage, quantidade }) 
 	return (
 		<Card>
 			<MDBox display='flex' justifyContent='space-between' pt={1} px={2}>
-				<MDBox variant='gradient' bgColor={color} color={color === 'light' ? 'dark' : 'white'} coloredShadow={color} borderRadius='xl' display='flex' justifyContent='center' alignItems='center' width='4rem' height='4rem' mt={-3}>
-					<Icon fontSize='medium' color='inherit'>
+				<MDBox marginRight={3} variant='gradient' bgColor={color} color={color === 'light' ? 'dark' : 'white'} coloredShadow={color} borderRadius='xl' display='flex' justifyContent='center' alignItems='center' width='4rem' height='4rem' mt={-3}>
+					<MDTypography variant='h4'>
 						{quantidade}
-					</Icon>
+					</MDTypography>
 				</MDBox>
 				<MDBox textAlign='right' lineHeight={1.25}>
 					<MDTypography variant='button' fontWeight='light' color='text'>
@@ -62,6 +62,7 @@ ComplexStatisticsCard.defaultProps = {
 		text: '',
 		label: '',
 	},
+	quantidade: 0
 }
 
 // Typechecking props for the ComplexStatisticsCard
@@ -74,7 +75,7 @@ ComplexStatisticsCard.propTypes = {
 		amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		label: PropTypes.string,
 	}),
-	icon: PropTypes.string,
+	quantidade: PropTypes.number,
 }
 
 export default ComplexStatisticsCard

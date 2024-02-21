@@ -61,29 +61,12 @@ export default function Index() {
 									<Stack key={key} spacing={2} sx={{ justifyContent: 'center' }}>
 										<Divider onClick={() => console.table(teste)} />
 										<Button sx={{ alignItems: 'center' }} variant='text' onClick={() => handleSelecionado(DadosDasLojas[key].cnpj)}>
-											<Typography sx={{ textDecoration: 'underline' }} variant='h4' alignSelf={'center'}>
-												{key}
-											</Typography>
-										</Button>
-										<Grid container spacing={3} sx={{ justifyContent: 'center' }}>
+
 											<Grid item xs={12} md={6}>
 												<MDBox mb={1.5}>
 													<ComplexStatisticsCard
-														color='dark'
-														icon='leaderboard'
-														title='Quantidade de Vendas'
-														count={DadosDasLojas[key].quantidade_vendas}
-														percentage={{
-															label: `Dados do dia ${DadosDasLojas[key].data}`,
-														}}
-													/>
-												</MDBox>
-											</Grid>
-											<Grid item xs={12} md={6}>
-												<MDBox mb={1.5}>
-													<ComplexStatisticsCard
-														icon={DadosDasLojas[key].quantidade_vendas}
-														title='Valor total das vendas'
+														quantidade={DadosDasLojas[key].quantidade_vendas}
+														title='Total das vendas'
 														count={DadosDasLojas[key].total_vendas}
 														percentage={{
 															label: key,
@@ -91,7 +74,7 @@ export default function Index() {
 													/>
 												</MDBox>
 											</Grid>
-										</Grid>
+											</Button>
 									</Stack>
 								)
 							}
