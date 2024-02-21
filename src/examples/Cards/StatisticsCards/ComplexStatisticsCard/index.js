@@ -25,13 +25,13 @@ import Icon from '@mui/material/Icon'
 import MDBox from 'components/MDBox'
 import MDTypography from 'components/MDTypography'
 
-function ComplexStatisticsCard({ color, title, count, percentage, icon }) {
+function ComplexStatisticsCard({ color, title, count, percentage, quantidade }) {
 	return (
 		<Card>
 			<MDBox display='flex' justifyContent='space-between' pt={1} px={2}>
 				<MDBox variant='gradient' bgColor={color} color={color === 'light' ? 'dark' : 'white'} coloredShadow={color} borderRadius='xl' display='flex' justifyContent='center' alignItems='center' width='4rem' height='4rem' mt={-3}>
 					<Icon fontSize='medium' color='inherit'>
-						{icon}
+						{quantidade}
 					</Icon>
 				</MDBox>
 				<MDBox textAlign='right' lineHeight={1.25}>
@@ -74,7 +74,7 @@ ComplexStatisticsCard.propTypes = {
 		amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		label: PropTypes.string,
 	}),
-	icon: PropTypes.node.isRequired,
+	icon: PropTypes.string,
 }
 
 export default ComplexStatisticsCard

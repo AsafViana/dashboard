@@ -82,11 +82,11 @@ export default function Index() {
 											<Grid item xs={12} md={6}>
 												<MDBox mb={1.5}>
 													<ComplexStatisticsCard
-														icon='leaderboard'
+														icon={DadosDasLojas[key].quantidade_vendas}
 														title='Valor total das vendas'
 														count={DadosDasLojas[key].total_vendas}
 														percentage={{
-															label: 'Dados do dia ' + DadosDasLojas[key].data,
+															label: key,
 														}}
 													/>
 												</MDBox>
