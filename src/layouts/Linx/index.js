@@ -7,7 +7,6 @@ import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import Divider from '@mui/material/Divider'
 
 // Componentes do Material Dashboard 2 React
 import MDBox from 'components/MDBox'
@@ -23,7 +22,9 @@ import { GetLojas, GetDadosLojas } from './controller'
 export default function Index() {
 	const [Selecionado, setSelecionado] = useState('todos')
 	const [Lojas, setLojas] = useState([])
-	const [DadosDasLojas, setDadosDasLojas] = useState({})
+	const [DadosDasLojas, setDadosDasLojas] = useState([])
+	const [selectedDate, setSelectedDate] = useState()
+	const [Datas, setDatas] = useState([])
 
 	const handleSelecionado = (selecionado) => {
 		setDadosDasLojas({})
@@ -35,18 +36,18 @@ export default function Index() {
 	}, [Lojas])
 
 	useEffect(() => {
-		GetDadosLojas(Selecionado).then((dados) => {
+		GetDadosLojas(Selecionado , Datas).then((dados) => {
 			setDadosDasLojas(dados)
+			console.log(dados)
 		})
-	}, [Selecionado])
+	}, [Selecionado, Datas])
 
 	if (!!Lojas || !!DadosDasLojas) {
 		if (Selecionado === 'todos') {
 			return (
 				<DashboardLayout>
-					<DashboardNavbar selectDados={Lojas} valueSelect={Selecionado} onChange={handleSelecionado} />
-					{}
-					<Stack justifyContent='space-around' alignItems='center' direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
+					<DashboardNavbar selectDados={Lojas} valueSelect={Selecionado} onChangeSelect={handleSelecionado} onChangeData={setDatas} />
+					<Stack marginTop={5} marginBottom={3} justifyContent='space-around' alignItems='center' direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
 						<Typography variant='h2' gutterBottom fontWeight={20}>
 							Faturamento total:
 						</Typography>
@@ -55,26 +56,24 @@ export default function Index() {
 						</Typography>
 					</Stack>
 					<Stack spacing={{ xs: 3, sm: 10 }} direction='row' useFlexGap flexWrap='wrap' py={30} ustifyContent='space-around' alignItems='center' sx={{ justifyContent: 'center', paddingTop: 3 }}>
-						{Object.keys(DadosDasLojas).map((key, index, teste) => {
-							if (key !== 'somatorio_total') {
+						{DadosDasLojas.map(([chave, valor]) => {
+							if (chave !== 'somatorio_total') {
 								return (
-									<Stack key={key} spacing={2} sx={{ justifyContent: 'center' }}>
-										<Divider onClick={() => console.table(teste)} />
-										<Button sx={{ alignItems: 'center' }} variant='text' onClick={() => handleSelecionado(DadosDasLojas[key].cnpj)}>
-
+									<Stack key={chave} spacing={2} sx={{ justifyContent: 'center' }}>
+										<Button sx={{ alignItems: 'center' }} variant='text' onClick={() => handleSelecionado(valor.cnpj)}>
 											<Grid item xs={12} md={6}>
 												<MDBox mb={1.5}>
 													<ComplexStatisticsCard
-														quantidade={DadosDasLojas[key].quantidade_vendas}
+														quantidade={valor.quantidade_vendas}
 														title='Total das vendas'
-														count={DadosDasLojas[key].total_vendas}
+														count={valor.total_vendas}
 														percentage={{
-															label: key,
+															label: chave,
 														}}
 													/>
 												</MDBox>
 											</Grid>
-											</Button>
+										</Button>
 									</Stack>
 								)
 							}

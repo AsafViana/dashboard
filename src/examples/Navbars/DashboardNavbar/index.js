@@ -32,6 +32,8 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Box from '@mui/material/Box'
+import {DatePicker} from '@mui/x-date-pickers'
+import dayjs, {Dayjs} from 'dayjs'
 
 // Material Dashboard 2 React components
 import MDBox from 'components/MDBox'
@@ -46,12 +48,15 @@ import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu 
 
 // Material Dashboard 2 React context
 import { useMaterialUIController, setTransparentNavbar, setMiniSidenav, setOpenConfigurator } from 'context'
+import MDTypography from 'components/MDTypography'
 
-function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, onChange }) {
+function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, onChangeSelect, onChangeData }) {
 	const [navbarType, setNavbarType] = useState()
 	const [controller, dispatch] = useMaterialUIController()
 	const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller
 	const [openMenu, setOpenMenu] = useState(false)
+	const [DataInicial, setDataInicial] = useState(dayjs())
+	const [DataFinal, setDataFinal] = useState(dayjs())
 	const route = useLocation().pathname.split('/').slice(1)
 
 	useEffect(() => {
@@ -85,10 +90,13 @@ function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, on
 	const handleOpenMenu = (event) => setOpenMenu(event.currentTarget)
 	const handleCloseMenu = () => setOpenMenu(false)
 
-	 const handleChange = (event) => {
-			console.log(event.target.value)
-			onChange(event.target.value)
-		}
+	useEffect(() => {
+		onChangeData([DataInicial.toJSON().split('T')[0], DataFinal.toJSON().split('T')[0]])
+	}, [DataInicial, DataFinal])
+
+	const handleChangeSelect = (event) => {
+		onChangeSelect(event.target.value)
+	}
 
 	// Render the notifications menu
 	const renderMenu = () => (
@@ -128,13 +136,16 @@ function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, on
 					<Breadcrumbs icon='home' title={route[route.length - 1]} route={route} light={light} />
 				</MDBox>
 
+				<DatePicker value={DataInicial} format='DD/MM/YYYY' label='Data Inicial' onChange={setDataInicial} />
+				<DatePicker value={DataFinal} format='DD/MM/YYYY' label='Data Final' onChange={setDataFinal} />
+
 				{selectDados.length === 0 ? (
 					<></>
 				) : (
 					<Box sx={{ minWidth: 300 }}>
 						<FormControl fullWidth>
 							<InputLabel id='demo-simple-select-label'>Loja</InputLabel>
-							<Select labelId='demo-simple-select-label' id='demo-simple-select' defaultValue={10} value={valueSelect} label='Lojas' sx={{ height: 40 }} onChange={handleChange}>
+							<Select labelId='demo-simple-select-label' id='demo-simple-select' defaultValue={10} value={valueSelect} label='Lojas' sx={{ height: 40 }} onChange={handleChangeSelect}>
 								{selectDados.map((value, index, array) => {
 									return (
 										<MenuItem key={value.cnpj} value={value.cnpj}>
@@ -148,9 +159,10 @@ function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, on
 				)}
 				{isMini ? null : (
 					<MDBox sx={(theme) => navbarRow(theme, { isMini })}>
-						<MDBox pr={1}>
+						{/* <MDBox pr={1}>
 							<MDInput label='Search here' />
-						</MDBox>
+							<MDTypography>{`${DataInicial.getDate()}/${DataInicial.getMonth() + 1}/${DataInicial.getFullYear()} - ${DataFinal.getDate()}/${DataFinal.getMonth() + 1}/${DataFinal.getFullYear()}`}</MDTypography>
+						</MDBox> */}
 						<MDBox color={light ? 'white' : 'inherit'}>
 							<Link to='/profile'>
 								<IconButton sx={navbarIconButton} size='small' disableRipple>
@@ -183,8 +195,9 @@ DashboardNavbar.defaultProps = {
 	light: false,
 	isMini: false,
 	selectDados: [],
-	onChange:  () => {},
-	valueSelect:  '',
+	onChangeSelect: () => {},
+	valueSelect: '',
+	onChangeData: () => {}
 }
 
 // Typechecking props for the DashboardNavbar
@@ -193,8 +206,9 @@ DashboardNavbar.propTypes = {
 	light: PropTypes.bool,
 	isMini: PropTypes.bool,
 	selectDados: PropTypes.array,
-	onChange:  PropTypes.func,
-	valueSelect:  PropTypes.string,
+	onChangeSelect: PropTypes.func,
+	valueSelect: PropTypes.string,
+	onChangeData: PropTypes.func
 }
 
 export default DashboardNavbar

@@ -3,8 +3,9 @@ import { auth, createUserWithEmailAndPassword, updateProfile, addDoc, collection
 const handleSignUp = (nome, email, senha) => {
 	createUserWithEmailAndPassword(auth, email, senha)
 		.then(async (user) => {
+				localStorage.setItem('email', email)
+				localStorage.setItem('senha', senha)
 			updateProfile(user.user, { displayName: formatarNomeProprio(nome) })
-			console.log(user.user)
 
 			const uid = user.user.uid
 

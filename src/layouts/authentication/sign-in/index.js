@@ -64,6 +64,13 @@ function Basic() {
 		}
 	}, [Email, Senha])
 
+	useEffect(() => {
+		const email = localStorage.getItem('email')
+		const senha = localStorage.getItem('senha')
+
+		handleSignIn(email, senha, true, navigate)
+	}, [])
+
 	return (
 		<BasicLayout image={bgImage}>
 			<Card>
