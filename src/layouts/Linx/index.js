@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 
+
 // Componentes do Material Dashboard 2 React
 import MDBox from 'components/MDBox'
 
@@ -23,7 +24,6 @@ export default function Index() {
 	const [Selecionado, setSelecionado] = useState('todos')
 	const [Lojas, setLojas] = useState([])
 	const [DadosDasLojas, setDadosDasLojas] = useState([])
-	const [selectedDate, setSelectedDate] = useState()
 	const [Datas, setDatas] = useState([])
 
 	const handleSelecionado = (selecionado) => {
