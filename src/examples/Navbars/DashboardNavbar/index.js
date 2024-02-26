@@ -50,13 +50,13 @@ import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu 
 import { useMaterialUIController, setTransparentNavbar, setMiniSidenav, setOpenConfigurator } from 'context'
 import MDTypography from 'components/MDTypography'
 
-function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, onChangeSelect, onChangeData }) {
+function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, onChangeSelect, onChangeData, datas }) {
 	const [navbarType, setNavbarType] = useState()
 	const [controller, dispatch] = useMaterialUIController()
 	const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller
 	const [openMenu, setOpenMenu] = useState(false)
-	const [DataInicial, setDataInicial] = useState(dayjs())
-	const [DataFinal, setDataFinal] = useState(dayjs())
+	const [DataInicial, setDataInicial] = useState(dayjs(datas[0]))
+	const [DataFinal, setDataFinal] = useState(dayjs(datas[1]))
 	const route = useLocation().pathname.split('/').slice(1)
 
 	useEffect(() => {
@@ -91,7 +91,8 @@ function DashboardNavbar({ absolute, light, isMini, valueSelect, selectDados, on
 	const handleCloseMenu = () => setOpenMenu(false)
 
 	useEffect(() => {
-		onChangeData([DataInicial.toJSON().split('T')[0], DataFinal.toJSON().split('T')[0]])
+		const datas = [DataInicial.toJSON().split('T')[0], DataFinal.toJSON().split('T')[0]]
+		onChangeData(datas)
 	}, [DataInicial, DataFinal])
 
 	const handleChangeSelect = (event) => {
@@ -208,7 +209,8 @@ DashboardNavbar.propTypes = {
 	selectDados: PropTypes.array,
 	onChangeSelect: PropTypes.func,
 	valueSelect: PropTypes.string,
-	onChangeData: PropTypes.func
+	onChangeData: PropTypes.func,
+	datas: PropTypes.array
 }
 
 export default DashboardNavbar

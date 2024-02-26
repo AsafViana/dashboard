@@ -58,7 +58,6 @@ export default function index() {
 
 		clicksPorMes(DataFormatada).then((value) => {
 			setClicksPorMes(value)
-			console.log(value)
 		})
 
 		gastosPorMes(DataFormatada).then((val) => {

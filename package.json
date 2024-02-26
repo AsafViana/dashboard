@@ -28,7 +28,7 @@
 		"dayjs": "^1.11.10",
 		"firebase": "^10.7.0",
 		"pg-promise": "^11.5.4",
-		"prop-types": "15.8.1",
+		"prop-types": "^15.8.1",
 		"react": "^17.0.0 || ^18.0.0",
 		"react-chartjs-2": "5.2.0",
 		"react-datepicker": "^4.24.0",

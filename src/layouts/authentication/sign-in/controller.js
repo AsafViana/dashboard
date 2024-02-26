@@ -37,15 +37,9 @@ const handleSignInGoogle = (navigate) => {
 						uid: uid,
 					})
 					navigate('/linx')
-					console.log({
-						nome: user.user.displayName,
-						email: user.user.email,
-						uid: uid,
-				})
 				} catch (e) {
 					navigate('/')
 					alert('Erro na criação do perfil')
-					console.log(e)
 				}
 			})
 			.catch((error) => {

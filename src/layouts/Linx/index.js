@@ -19,12 +19,15 @@ import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatist
 
 // Controlador
 import { GetLojas, GetDadosLojas } from './controller'
+import dayjs from 'dayjs'
+
 
 export default function Index() {
 	const [Selecionado, setSelecionado] = useState('todos')
 	const [Lojas, setLojas] = useState([])
 	const [DadosDasLojas, setDadosDasLojas] = useState([])
-	const [Datas, setDatas] = useState([])
+	const [Datas, setDatas] = useState([dayjs().toJSON().split('T')[0], dayjs().toJSON().split('T')[0]])
+	const [FaturamentoTotal, setFaturamentoTotal] = useState(0)
 
 	const handleSelecionado = (selecionado) => {
 		setDadosDasLojas({})
@@ -33,26 +36,43 @@ export default function Index() {
 
 	useEffect(() => {
 		GetLojas().then(setLojas)
-	}, [Lojas])
-
-	useEffect(() => {
-		GetDadosLojas(Selecionado , Datas).then((dados) => {
+		GetDadosLojas(Selecionado, Datas).then((dados) => {
 			setDadosDasLojas(dados)
-			console.log(dados)
-		})
-	}, [Selecionado, Datas])
+			if (Array.isArray(dados) && dados.length > 0) {
+				const lastElementIndex = dados.length - 1
+				setFaturamentoTotal(dados[lastElementIndex][1])
+			}
+		}).catch((e) => console.log(e))
+	}, [Datas])
+
+	 useEffect(() => {
+			const intervalId = setInterval(() => {
+				GetLojas().then(setLojas)
+				GetDadosLojas(Selecionado, Datas).then((dados) => {
+					setDadosDasLojas(dados)
+					if (Array.isArray(dados) && dados.length > 0) {
+						const lastElementIndex = dados.length - 1
+						setFaturamentoTotal(dados[lastElementIndex][1])
+					}
+				})
+			}, 1000) // Intervalo de 1 segundo (1000 milissegundos)
+
+			return () => {
+				clearInterval(intervalId) // Limpa o intervalo quando o componente é desmontado
+			}
+		}, [])
 
 	if (!!Lojas || !!DadosDasLojas) {
 		if (Selecionado === 'todos') {
 			return (
 				<DashboardLayout>
-					<DashboardNavbar selectDados={Lojas} valueSelect={Selecionado} onChangeSelect={handleSelecionado} onChangeData={setDatas} />
+					<DashboardNavbar selectDados={Lojas} valueSelect={Selecionado} onChangeSelect={handleSelecionado} onChangeData={setDatas} datas={Datas}/>
 					<Stack marginTop={5} marginBottom={3} justifyContent='space-around' alignItems='center' direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
 						<Typography variant='h2' gutterBottom fontWeight={20}>
 							Faturamento total:
 						</Typography>
 						<Typography variant='h2' gutterBottom>
-							{DadosDasLojas.somatorio_total}
+							{FaturamentoTotal}
 						</Typography>
 					</Stack>
 					<Stack spacing={{ xs: 3, sm: 10 }} direction='row' useFlexGap flexWrap='wrap' py={30} ustifyContent='space-around' alignItems='center' sx={{ justifyContent: 'center', paddingTop: 3 }}>

@@ -87,7 +87,6 @@ const adsets = () => {
 			if (request.status === 200) {
 				// Requisição bem-sucedida
 				const resposta = JSON.parse(request.responseText)
-				console.log(resposta)
 				resolve(resposta)
 			} else {
 				// Tratar erros aqui

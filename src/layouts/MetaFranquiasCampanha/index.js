@@ -49,7 +49,6 @@ export default function index() {
 		campanha().then((obj) => {
 			setCampanhas(obj)
 		})
-		console.log(tasks)
 
 		campanhaQuantidade().then((val) => {
 			setCampanhaQuantidade(val)
