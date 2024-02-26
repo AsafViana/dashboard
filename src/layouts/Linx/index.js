@@ -34,7 +34,7 @@ export default function Index() {
 		setSelecionado(selecionado)
 	}
 
-	useEffect(() => {
+	useEffect(() => { 
 		GetLojas().then(setLojas)
 		GetDadosLojas(Selecionado, Datas).then((dados) => {
 			setDadosDasLojas(dados)
@@ -60,7 +60,7 @@ export default function Index() {
 			return () => {
 				clearInterval(intervalId) // Limpa o intervalo quando o componente é desmontado
 			}
-		}, [])
+		}, [Selecionado, Datas]) 
 
 	if (!!Lojas || !!DadosDasLojas) {
 		if (Selecionado === 'todos') {
