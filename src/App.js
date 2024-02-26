@@ -127,7 +127,7 @@ export default function App() {
 				<CssBaseline />
 				{layout === 'metaFanqueadoraAdset' && (
 					<>
-						<Sidenav color={sidenavColor} brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite} brandName='Compania Dashboard' routes={routes} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave} />
+						<Sidenav color={sidenavColor} brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite} brandName='Cia Dashboard' routes={routes} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave} />
 						<Configurator />
 						{configsButton}
 					</>
@@ -144,7 +144,7 @@ export default function App() {
 			<CssBaseline />
 			{layout === 'dashboard' && (
 				<>
-					<Sidenav color={sidenavColor} brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite} brandName='Compania Dashboard' routes={routes} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave} />
+					<Sidenav color={sidenavColor} brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite} brandName='Cia Dashboard' routes={routes} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave} />
 					<Configurator />
 					{configsButton}
 				</>
